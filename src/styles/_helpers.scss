@@ -1,0 +1,13 @@
+.c-hand {
+  cursor: pointer;
+  @include transition();
+}
+
+.thin {
+  font-weight: thin;
+  color: $text-muted;
+}
+
+.flex-1 {
+  flex: 1;
+}

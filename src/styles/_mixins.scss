@@ -1,0 +1,19 @@
+@mixin media-md-up {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@function set-color($color) {
+  @if (lightness($color) >40) {
+    @return $light;
+  } @else {
+    @return $dark;
+  }
+}

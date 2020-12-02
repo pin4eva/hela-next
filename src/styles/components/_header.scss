@@ -1,0 +1,46 @@
+#front-header {
+  .navbar {
+    position: relative;
+    .fa-bars {
+      z-index: 2;
+    }
+    @include media-sm {
+      .fa-bars {
+        cursor: pointer;
+        // color: ;
+      }
+      .mobile-nav {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $dark;
+        color: $light;
+        width: 100%;
+        height: 100vh;
+        z-index: 1;
+        @include transition();
+        .nav {
+          margin-top: 2rem;
+          flex-direction: column;
+          height: 60%;
+          //   background-color: gray;
+          justify-content: space-around;
+          align-items: center;
+        }
+        &.close {
+          width: 0;
+          .nav {
+            display: none;
+            @include transition();
+          }
+        }
+      }
+      &.mobile-nav.close {
+        .fa-bars {
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+  }
+}
