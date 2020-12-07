@@ -1,0 +1,43 @@
+#dashboard {
+  .dashboard {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "aside aside main main main main"
+      "aside aside footer footer footer footer";
+
+    &-aside {
+      grid-area: aside;
+      grid-row: 1 / span 3;
+      z-index: 2;
+
+      @include transition;
+    }
+    &-main {
+      grid-area: main;
+      // grid-row: 1 / span 6;
+    }
+    &-footer {
+      grid-area: footer;
+
+      background-color: yellow;
+      grid-row: 3/3;
+    }
+
+    @media (max-width: 768px) {
+      &-aside {
+        display: none;
+        &.open {
+          display: grid;
+          grid-column: 1 / 5;
+        }
+      }
+      &-main {
+        grid-column: 1 / span 6;
+      }
+      &-footer {
+        grid-column: 1 / span 6;
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+$btn-padding: 0.6rem 3.125rem;
+
+@font-face {
+  font-family: "Poppins", sans-serif;
+  src: url("../fonts/Poppins-Black.ttf");
+  src: url("../fonts/Poppins-BlackItalic.ttf");
+  src: url("../fonts/Poppins-Bold.ttf");
+  src: url("../fonts/Poppins-Italic.ttf");
+  src: url("../fonts/Poppins-ExtraLight.ttf");
+  src: url("../fonts/Poppins-Light.ttf");
+  src: url("../fonts/Poppins-LightItalic.ttf");
+  src: url("../fonts/Poppins-Medium.ttf");
+  src: url("../fonts/Poppins-MediumItalic.ttf");
+  src: url("../fonts/Poppins-SemiBold.ttf");
+  src: url("../fonts/Poppins-Regular.ttf");
+  src: url("../fonts/Poppins-Thin.ttf");
+  src: url("../fonts/Poppins-ThinItalic.ttf");
+}
+
+html {
+  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 98%;
+  // color: $text-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+h2 {
+  font-size: 2.3rem;
+}
+h3 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.8rem;
+}
+h4 {
+  font-size: 1.5rem;
+}
+h5 {
+  font-size: 1.3rem;
+}
+h6 {
+  font-size: 1.1rem;
+}
+
+.btn {
+  border-radius: 3.125rem;
+  padding: $btn-padding;
+  &-sm {
+    padding: 0.4rem 2.875rem;
+  }
+  &-btn-green {
+    color: $light;
+    background-color: $green;
+  }
+}
+
+input,
+.form-control {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  border-radius: 1.875rem;
+  padding: $btn-padding;
+  width: 100%;
+
+  outline: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+a,
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+}
