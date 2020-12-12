@@ -1,12 +1,15 @@
+import HeaderBannerComp from "@/components/HeaderBanner";
+import HeaderComp from "@/components/HeaderComp";
 import FrontLayout from "@/layouts/FrontLayout";
 import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
 const ReportsListPage = () => {
-  const [activeTab, setActiveTab] = useState("All");
+  const [activeTab, setActiveTab] = useState(0);
   return (
     <FrontLayout>
+      <HeaderBannerComp image="/images/reports-banner.png"></HeaderBannerComp>
       <Wrapper>
         <div className="reports">
           <div className="container">
@@ -25,11 +28,10 @@ const ReportsListPage = () => {
                 {tabList.map((tab, i) => (
                   <li className="nav-item" key={i}>
                     <a
-                      href="#"
-                      className={`nav-link ${
-                        activeTab === tab ? "active" : ""
+                      className={`nav-link c-hand ${
+                        activeTab === i ? "active" : ""
                       }`}
-                      onClick={() => setActiveTab(tab)}
+                      onClick={() => setActiveTab(i)}
                     >
                       {tab}
                     </a>
@@ -43,7 +45,7 @@ const ReportsListPage = () => {
                 <div className="wrapper my-3 " key={i}>
                   <div className="wrapper-header">
                     <h6 className="mt-3 mb-0">{report.title}</h6>
-                    <div className="small d-flex justify-content-between mb-3">
+                    <div className="small font-italic d-flex justify-content-between mb-3">
                       <small>{report.court}</small>
                       <small>{report.caseRef}</small>
                     </div>
@@ -75,7 +77,8 @@ const Wrapper = styled.div`
       align-items: center;
       width: 100%;
       max-width: 768px;
-      margin: auto;
+      margin: 4rem auto;
+
       input {
         margin-right: 1rem;
       }

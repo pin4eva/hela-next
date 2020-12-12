@@ -13,7 +13,9 @@ import { useApollo } from "apollo";
 // import "utils/scripts";
 
 // if (typeof window !== "undefined") {
-//   require("@/utils/scripts");
+//   // require("popper.js");
+//   // require("bootstrap/dist/js/bootstrap");
+//   require("../utils/scripts.js");
 // }
 
 Router.events.on("routeChangeStart", () => {
@@ -39,7 +41,6 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         />
         <title>HELA</title>
-        <script src="/scripts.js" type="text/javascript"></script>
       </Head>
       <RecoilRoot>
         <ApolloProvider client={client}>

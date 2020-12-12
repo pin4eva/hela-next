@@ -1,7 +1,8 @@
 #front-header {
   // background-color: $primary;
+  position: relative;
+
   .navbar {
-    position: relative;
  
     .fa-bars {
       z-index: 2;
@@ -9,11 +10,6 @@
 
 
 
-    @include media-md-up {
-      .nav-link {
-        font-size: 1rem;
-      }
-    }
     @include media-sm {
       .fa-bars {
         cursor: pointer;
@@ -22,13 +18,12 @@
       .mobile-nav {
         position: absolute;
         overflow: hidden;
-        top: 0;
-        // display: none;
+      
+        display: none;
         // right: 0;
-        left: 0;
         background-color: $dark;
         color: $light;
-        width: 100vw;
+        width: 0;
         height: 100vh;
         z-index: 1;
         @include transition();
@@ -40,12 +35,15 @@
           justify-content: space-around;
           align-items: center;
         }
-        &.close {
-          width: 0;
-          .nav {
-            display: none;
-            @include transition();
-          }
+        &.open {
+          @include transition();
+          display: block;
+          width: 100%;
+            top: 0;
+            left: 0;
+          
+
+          
         }
       }
       &.mobile-nav.close {
@@ -54,6 +52,15 @@
           color: white;
         }
       }
+    }
+  }
+}
+
+
+.header-banner {
+  .overlay {
+    .navbar {
+      color: #fff;
     }
   }
 }

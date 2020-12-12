@@ -1,6 +1,8 @@
-const reportTabItems = document.querySelectorAll(".report-tab-item");
-reportTabItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    item.classList.toggle("active");
-  });
+const mobileNav = document.querySelector(".mobile-nav");
+
+const navToggler = document.getElementById("front-nav-toggler");
+
+navToggler.addEventListener("click", () => {
+  navToggler.classList.toggle("text-light");
+  mobileNav.classList.toggle("open");
 });

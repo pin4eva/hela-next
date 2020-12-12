@@ -5,28 +5,18 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 const HeaderComp = () => {
-  const [open, setOpen] = useRecoilState(MobileNavAtom);
-  const [isMobile, setIsMobil] = useState(false);
-
-  const handleMobileToggle = () => {
-    setOpen(!open);
-    console.log(isMobile);
-  };
-
-  const resizeScreen = () => {
-    if (window.innerWidth < 768) {
-      setIsMobil(true);
-    } else {
-      setIsMobil(false);
-    }
-  };
   useEffect(() => {
-    window.addEventListener("resize", resizeScreen);
+    if (typeof window !== "undefined") {
+      const mobileNav = document.querySelector(".mobile-nav");
 
-    return () => {
-      window.removeEventListener("resize", resizeScreen);
-    };
-  });
+      const navToggler = document.getElementById("front-nav-toggler");
+
+      navToggler.addEventListener("click", () => {
+        navToggler.classList.toggle("text-light");
+        mobileNav.classList.toggle("open");
+      });
+    }
+  }, []);
 
   return (
     <Header id="front-header">
@@ -35,26 +25,17 @@ const HeaderComp = () => {
           <a className="nav-brand font-weight-bold">HELA</a>
         </Link>
 
-        <i className="fas fa-bars d-md-none" onClick={handleMobileToggle}></i>
+        <i
+          className="fas fa-bars d-md-none"
+          // onClick={handleMobileToggle}
+          id="front-nav-toggler"
+        ></i>
 
-        <ul className="nav">
-          {navItems.map((nav, i) => (
-            <li className="nav-item" key={i}>
-              <Link href="/">
-                <a className="nav-link">{nav.name}</a>
-              </Link>
-            </li>
-          ))}
-
-          <li className="nav-item">
-            <button className="btn btn-outline-primary btn-sm">Login</button>
-          </li>
-        </ul>
-        <div className={`mobile-nav ${!open ? "close" : ""}`}>
+        <div className="mobile-nav">
           <ul className="nav">
             {navItems.map((nav, i) => (
               <li className="nav-item" key={i}>
-                <Link href="/">
+                <Link href={nav.link}>
                   <a className="nav-link">{nav.name}</a>
                 </Link>
               </li>

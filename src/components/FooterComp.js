@@ -4,8 +4,8 @@ import styled from "styled-components";
 const FooterComp = () => {
   return (
     <Footer className="mt-4">
-      <div className="footer-top bg-dark text-light">
-        <div className="container">
+      <div className="footer-top bg-dark  text-light">
+        <div className="container py-3">
           <div className="footer-top-wrapper text-center">
             <h1 className="text-center">Download the app now</h1>
             <p className="my-4">
@@ -44,7 +44,7 @@ const FooterComp = () => {
 
 const Footer = styled.footer`
   .footer-top {
-    height: 30vh;
+    /* height: 30vh; */
     display: flex;
     align-items: center;
 

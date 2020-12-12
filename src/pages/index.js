@@ -8,12 +8,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import PricingComp from "@/components/Pricing";
 import ThemeButton from "@/components/shared/ThemeButton";
+import HeaderComp from "@/components/HeaderComp";
 // import "./index.scss";
 
 const Home = (props) => {
   const modalActive = useRecoilValue(ModalAtom);
   return (
     <FrontLayout>
+      <HeaderComp />
       <HomeWrapper id="home" className="container">
         <div className="banner">
           <div className="banner-wrapper">
