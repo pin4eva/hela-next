@@ -10,6 +10,11 @@ import { ThemeProvider } from "theme-ui";
 import { ThemeProvider as Styledtheme } from "styled-components";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo";
+// import "utils/scripts";
+
+// if (typeof window !== "undefined") {
+//   require("@/utils/scripts");
+// }
 
 Router.events.on("routeChangeStart", () => {
   Nprogress.start();
@@ -34,6 +39,7 @@ function MyApp({ Component, pageProps }) {
           crossOrigin="anonymous"
         />
         <title>HELA</title>
+        <script src="/scripts.js" type="text/javascript"></script>
       </Head>
       <RecoilRoot>
         <ApolloProvider client={client}>

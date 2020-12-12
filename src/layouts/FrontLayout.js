@@ -22,9 +22,11 @@ FrontLayout.propTypes = {
 
 const Layout = styled.div`
   display: flex;
+
+  height: 100%;
   flex-direction: column;
   #main-page {
-    flex: 2;
+    flex: 1;
   }
 `;
 

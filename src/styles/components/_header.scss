@@ -2,9 +2,12 @@
   // background-color: $primary;
   .navbar {
     position: relative;
+ 
     .fa-bars {
       z-index: 2;
     }
+
+
 
     @include media-md-up {
       .nav-link {
@@ -20,6 +23,7 @@
         position: absolute;
         overflow: hidden;
         top: 0;
+        // display: none;
         // right: 0;
         left: 0;
         background-color: $dark;
@@ -32,7 +36,7 @@
           margin-top: 2rem;
           flex-direction: column;
           height: 60%;
-          //   background-color: gray;
+            
           justify-content: space-around;
           align-items: center;
         }

@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 
 const DasboardFooter = () => {
   return (
-    <footer className="">
-      <p>Dashboard Footer</p>
+    <footer className="dashboard-footer">
+      <div className="container">
+        <p>Dashboard Footer</p>
+      </div>
     </footer>
   );
 };

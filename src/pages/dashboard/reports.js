@@ -1,11 +1,13 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
 import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 const ReportsPage = () => {
+  const [tabIndex, setTabIndex] = useState(1);
   return (
     <DashboardLayout title="Reports">
-      <Wrapper>
+      <Wrapper className="dashboard-reports">
         <div className="recently-viewed">
           <h5 className="my-3 heading">Recently viewed</h5>
           <div className="grid-2">
@@ -19,26 +21,23 @@ const ReportsPage = () => {
         <h5 className="heading my-4">Supreme court Reports</h5>
         <input type="search" className=" bg-secondary" />
 
-        <div className="report-list">
-          <ul className="nav ">
-            <li className="nav-link">
-              {" "}
-              <a href="#" className="nav-link">
-                All Reports
-              </a>{" "}
-            </li>
-            <li className="nav-link">
-              {" "}
-              <a href="#" className="nav-link">
-                Supreme court
-              </a>{" "}
-            </li>
-            <li className="nav-link">
-              {" "}
-              <a href="#" className="nav-link">
-                Court of Apeal
-              </a>{" "}
-            </li>
+        <div className="report-tab">
+          <ul className="nav  ">
+            {tabMenus.map((menu) => (
+              <li
+                className="nav-item report-tab-item"
+                key={menu.id}
+                onClick={() => setTabIndex(menu.id)}
+              >
+                <a
+                  className={`nav-link c-hand report-tab-item ${
+                    tabIndex === menu.id ? "active" : ""
+                  }`}
+                >
+                  {menu.name}
+                </a>
+              </li>
+            ))}
           </ul>
           <hr className="m-0" />
 
@@ -58,13 +57,13 @@ const ReportsPage = () => {
 
 export default ReportsPage;
 
-const Wrapper = styled.div`
-  .report-list {
-    ul {
-      list-style: none;
-    }
-  }
-`;
+const Wrapper = styled.div``;
+
+const tabMenus = [
+  { id: 1, name: "All Reports" },
+  { id: 2, name: "Supreme court" },
+  { id: 3, name: "Court of Apeal" },
+];
 
 const reports = [
   {

@@ -1,0 +1,1 @@
+{"ast":null,"code":"(function () {\n  console.log(\"Ready \");\n})();","map":{"version":3,"sources":["/home/peter/Desktop/projects/hela/law-3/src/utils/scripts.js"],"names":["console","log"],"mappings":"AAAA,CAAC,YAAM;AACLA,EAAAA,OAAO,CAACC,GAAR,CAAY,QAAZ;AACD,CAFD","sourcesContent":["(() => {\n  console.log(\"Ready \");\n})();\n"]},"metadata":{},"sourceType":"script"}

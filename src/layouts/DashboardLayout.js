@@ -9,26 +9,24 @@ const DashboardLayout = ({ children, title }) => {
   const [isOpen, setIsOpen] = useRecoilState(DSidebar);
 
   return (
-    <Wrapper id="dashboard">
-      <div className="dashboard">
-        <DashboardAside />
-        <main className="dashboard-main">
-          <div className="container">
-            <div className="d-flex align-items-center py-3">
-              <i
-                className="fas fa-bars fa-2x text-light-green d-md-none c-hand"
-                onClick={() => setIsOpen(!isOpen)}
-              ></i>
-              <h5 className="text-center align-self-center flex-1 m-0">
-                {title}
-              </h5>
-            </div>
-            {children}
+    <div className="dashboard">
+      <DashboardAside />
+      <main className="dashboard-main">
+        <div className="container">
+          <div className="d-flex align-items-center py-3">
+            <i
+              className="fas fa-bars fa-2x text-light-green d-md-none c-hand"
+              onClick={() => setIsOpen(!isOpen)}
+            ></i>
+            <h5 className="text-center align-self-center flex-1 m-0">
+              {title}
+            </h5>
           </div>
-        </main>
-        <footer className="dashboard-footer">footer</footer>
-      </div>
-    </Wrapper>
+          {children}
+        </div>
+      </main>
+      <footer className="dashboard-footer">footer</footer>
+    </div>
   );
 };
 DashboardLayout.propTypes = {
