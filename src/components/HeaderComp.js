@@ -35,9 +35,12 @@ const HeaderComp = () => {
           <a className="nav-brand font-weight-bold">HELA</a>
         </Link>
 
-        <i className="fas fa-bars d-md-none" onClick={handleMobileToggle}></i>
+        <i
+          className="fas fa-bars d-md-none menu-toggle"
+          onClick={handleMobileToggle}
+        ></i>
 
-        <ul className="nav">
+        {/* <ul className="nav">
           {navItems.map((nav, i) => (
             <li className="nav-item" key={i}>
               <Link href="/">
@@ -49,8 +52,8 @@ const HeaderComp = () => {
           <li className="nav-item">
             <button className="btn btn-outline-primary btn-sm">Login</button>
           </li>
-        </ul>
-        <div className={`mobile-nav ${!open ? "close" : ""}`}>
+        </ul> */}
+        <div className="mobile-nav">
           <ul className="nav">
             {navItems.map((nav, i) => (
               <li className="nav-item" key={i}>
