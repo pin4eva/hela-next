@@ -1,15 +1,13 @@
 import HeaderBannerComp from "@/components/HeaderBanner";
-import HeaderComp from "@/components/HeaderComp";
 import FrontLayout from "@/layouts/FrontLayout";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const ReportsListPage = () => {
   const [activeTab, setActiveTab] = useState(0);
   return (
     <FrontLayout>
-      <HeaderBannerComp image="/images/reports-banner.png"></HeaderBannerComp>
+      <HeaderBannerComp image="/images/reports-banner.png" />
       <Wrapper>
         <div className="reports">
           <div className="container">

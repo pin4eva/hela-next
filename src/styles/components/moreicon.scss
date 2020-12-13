@@ -1,0 +1,50 @@
+.moreicon {
+    cursor: pointer;
+
+    li {
+        @include transition();
+        padding: 0.5rem 0.9rem;
+        cursor: pointer;
+        width: 100%;
+        display: block;
+
+
+        &:hover {
+            background: $primary;
+
+
+            color: white;
+        }
+    }
+
+    // position: relative;
+    &-children {
+        position: absolute;
+        list-style: none;
+        background-color: yellow;
+        right: 0;
+
+        margin: 0;
+        padding: 0;
+
+
+        li {
+            @include transition();
+            padding: 0.5rem 0.9rem;
+            cursor: pointer;
+            text-align: left;
+            // background-color: blue;
+
+            &:hover {
+                background: $primary;
+
+
+                color: white;
+            }
+        }
+
+
+    }
+
+
+}

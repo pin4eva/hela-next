@@ -4,24 +4,12 @@ export const ReportTypes = gql`
   type Report {
     _id: ID
     court: String
-    suit_no: String
     title: String
-    appellant: String
-    respondent: String
-    c_appellant: String
-    c_respondent: String
-    appeal: String
-    issues_of_law: String
     summary: String
-    determination: String
-    date: String
-    judges: String
-    vol: String
     year: String
-    ratios: String
-    cases_cited: String
-    books_cited: String
-    judgement: String
+    date: Date
+    vol: String
+    body: String
     likes: Int
     caseRef: String
     slug: String
@@ -45,29 +33,15 @@ export const ReportTypes = gql`
   input ReportInput {
     _id: ID
     court: String
-    suit_no: String
+
     title: String
-    appellant: String
-    respondent: String
-    c_appellant: String
-    c_respondent: String
-    appeal: String
-    issues_of_law: String
+
     summary: String
-    determination: String
-    date: String
-    judges: String
-    vol: String
     year: String
-    ratios: String
-    cases_cited: String
-    books_cited: String
-    judgement: String
-    likes: Int
-    caseRef: String
-    slug: String
-    createdAt: Date
-    parties: String
+    date: Date
+
+    vol: String
+    body: String
   }
   extend type Query {
     # Report

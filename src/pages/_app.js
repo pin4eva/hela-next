@@ -10,13 +10,14 @@ import { ThemeProvider } from "theme-ui";
 import { ThemeProvider as Styledtheme } from "styled-components";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo";
+import "react-mde/lib/styles/css/react-mde-all.css";
 // import "utils/scripts";
 
-// if (typeof window !== "undefined") {
-//   // require("popper.js");
-//   // require("bootstrap/dist/js/bootstrap");
-//   require("../utils/scripts.js");
-// }
+if (typeof window !== "undefined") {
+  // require("popper.js");
+  require("bootstrap/dist/js/bootstrap");
+  // require("../utils/scripts.js");
+}
 
 Router.events.on("routeChangeStart", () => {
   Nprogress.start();

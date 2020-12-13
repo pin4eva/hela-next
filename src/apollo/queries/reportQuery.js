@@ -4,35 +4,20 @@ export const ReportFragment = gql`
   fragment ReportFragment on Report {
     _id
     court
-    suit_no
     title
-    appellant
-    respondent
-    c_appellant
-    c_respondent
-    appeal
-    issues_of_law
     summary
-    determination
-    date
-    judges
-    vol
     year
-    ratios
-    cases_cited
-    books_cited
-    judgement
+    date
+
+    vol
+    body
     likes
     caseRef
     slug
     createdAt
-    comments {
-      _id
-    }
-    added_by {
-      _id
-      name
-    }
+    comments
+    added_by
+    updated_by
   }
 `;
 
@@ -59,10 +44,15 @@ export const GET_REPORT_QUERY = gql`
 export const ADD_REPORT_MUTATION = gql`
   mutation addReport($input: ReportInput) {
     addReport(input: $input) {
-      ...ReportFragment
+      _id
+      title
+      caseRef
+      date
+      vol
+      slug
+      createdAt
     }
   }
-  ${ReportFragment}
 `;
 
 export const UPDATE_REPORT_MUTATION = gql`
@@ -131,6 +121,7 @@ export const GET_LIMITED_REPORTS = gql`
       _id
       title
       vol
+      slug
       added_by {
         _id
         name

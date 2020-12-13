@@ -37,6 +37,12 @@ export const theme = {
       },
     },
   },
+  forms: {
+    select: {
+      borderRadius: "1.875rem",
+      // padding: "0.6rem 3.125rem",
+    },
+  },
   fonts: {
     body: '"Popins", sans-serif',
     heading: "inherit",

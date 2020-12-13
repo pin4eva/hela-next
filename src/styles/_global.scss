@@ -1,5 +1,3 @@
-$btn-padding: 0.6rem 3.125rem;
-
 @font-face {
   font-family: "Poppins", sans-serif;
   src: url("../fonts/Poppins-Black.ttf");
@@ -21,6 +19,7 @@ html {
   font-size: 14px;
   height: 100%;
   min-height: -webkit-fill-available;
+
   @media screen and (min-width: 768px) {
     font-size: 16px;
   }
@@ -32,9 +31,11 @@ body {
   height: 100%;
   min-height: 100vh;
   min-height: -webkit-fill-available;
+
   #__next {
     height: inherit;
   }
+
   // color: $text-color;
 }
 
@@ -50,21 +51,27 @@ h6 {
 h1 {
   font-size: 2.8rem;
 }
+
 h2 {
   font-size: 2.3rem;
 }
+
 h3 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.8rem;
 }
+
 h4 {
   font-size: 1.5rem;
 }
+
 h5 {
   font-size: 1.3rem;
 }
+
 h6 {
   font-size: 1.1rem;
 }
@@ -72,31 +79,37 @@ h6 {
 .btn {
   border-radius: 3.125rem;
   padding: $btn-padding;
+
   &-sm {
     padding: 0.4rem 2.875rem;
   }
+
   &-btn-green {
     color: $light;
     background-color: $green;
   }
 }
 
-input,
-.form-control {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  box-sizing: border-box;
-  border-radius: 1.875rem;
-  padding: $btn-padding;
-  width: 100%;
 
-  outline: none;
-  &:focus {
-    outline: none;
-  }
-}
+
+
 
 a,
 .nav-link {
   color: inherit;
   text-decoration: none;
+}
+
+
+.card {
+  padding: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
 }

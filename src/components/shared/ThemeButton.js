@@ -7,7 +7,7 @@ import { Spinner } from "theme-ui";
 const ThemeButton = (props) => {
   return (
     <Wrapper {...props}>
-      {props.loading ? (
+      {props.isLoading ? (
         <>
           <Spinner size="25" color="#fff" className="mr-2" /> Loading...
         </>
@@ -20,10 +20,10 @@ const ThemeButton = (props) => {
 
 ThemeButton.propTypes = {
   children: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool,
 };
 ThemeButton.defaultProps = {
-  loading: false,
+  isLoading: false,
 };
 
 // ThemeButton.defaultProps = {

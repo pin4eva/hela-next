@@ -36,3 +36,17 @@
   animation-name: open-close;
   animation-delay: 0.8s;
 }
+
+
+.input-style {
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  box-sizing: border-box;
+  border-radius: 1.875rem;
+  padding: $btn-padding;
+  width: 100%;
+
+  &:focus {
+    outline: none !important;
+  }
+}

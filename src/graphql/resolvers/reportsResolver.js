@@ -1,6 +1,7 @@
 import { Report, RepComment } from "models/Report";
 import Judge from "models/Judge";
 import { authentication } from "utils/auth";
+import dayjs from "dayjs";
 
 export default {
   Query: {
@@ -116,10 +117,11 @@ export default {
   },
   Mutation: {
     addReport: async (_, { input }, { token }) => {
-      const user = await authentication(token);
-      const { year, vol } = input;
+      // const user = await authentication(token);
+      const { date, vol } = input;
       let volume = vol.split(" ");
       volume = Number(volume[1]);
+      const year = dayjs(date).get("year");
       let count = await Report.countDocuments();
       count = (count + 1).toString();
       let SN = count.padStart(4, "1000");
@@ -133,8 +135,10 @@ export default {
         const report = await Report.create({
           ...input,
           caseRef,
-          added_by: user._id,
+          // added_by: user._id,
+          year,
         });
+
         return report;
       } catch (error) {
         throw new Error(error);
@@ -173,7 +177,7 @@ export default {
       }
     },
     deleteReport: async (_, { _id }, { token }) => {
-      await authentication(token);
+      // await authentication(token);
       try {
         const report = await Report.findOne({ _id });
         if (!report) throw new Error("No record found");

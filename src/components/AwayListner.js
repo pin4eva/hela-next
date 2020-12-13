@@ -1,7 +1,4 @@
-import React, { useRef, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useSetRecoilState } from "recoil";
-import { ModalAtom } from "atoms/ModalAtom";
+import { useEffect } from "react";
 
 /**
  * Hook that alerts clicks outside of the passed ref

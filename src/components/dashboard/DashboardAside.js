@@ -1,22 +1,21 @@
-import React, { useRef } from "react";
-import PropTypes from "prop-types";
-import styled from "styled-components";
 import Image from "next/image";
-import { useRecoilState } from "recoil";
-import { DSidebar } from "atoms/DashboardSideBar";
 import Link from "next/link";
+import PropTypes from "prop-types";
+import React, { useRef } from "react";
+import styled from "styled-components";
 import { useAwayListener } from "../AwayListner";
 
 const DashboardAside = () => {
-  const [isOpen, setIsOpen] = useRecoilState(DSidebar);
   const ref = useRef(null);
-  useAwayListener(ref, () => setIsOpen(false));
+  useAwayListener(ref, () => {
+    if (typeof window !== "undefined") {
+      const sidebar = document.querySelector(".dashboard-aside");
+      sidebar.classList.remove("open");
+    }
+  });
 
   return (
-    <Aside
-      className={`dashboard-aside bg-green ${isOpen ? "open" : ""}`}
-      ref={ref}
-    >
+    <Aside className="dashboard-aside bg-green " ref={ref}>
       <div className="sidebar-wrapper text-light py-3">
         <div className="d-flex container  align-items-center justify-content-between">
           <h6 className="m-0">Hela</h6>{" "}
