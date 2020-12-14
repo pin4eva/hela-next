@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import HeaderComp from "./HeaderComp";
 
-const HeaderBannerComp = ({ children, image }) => {
+const HeaderBannerComp = ({ image, desc }) => {
   return (
     <Wrapper
       className="header-banner"
@@ -19,9 +19,7 @@ const HeaderBannerComp = ({ children, image }) => {
         <HeaderComp />
 
         <div className="wrapper">
-          <h1 className="text-light header-banner-desc">
-            Choose from over 5000+ law reports from 1980 till date
-          </h1>
+          <h1 className="text-light wrapper-desc">{desc}</h1>
         </div>
       </div>
     </Wrapper>
@@ -31,10 +29,17 @@ const HeaderBannerComp = ({ children, image }) => {
 HeaderBannerComp.propTypes = {
   children: PropTypes.element,
   image: PropTypes.string,
+  desc: PropTypes.string,
+};
+
+HeaderBannerComp.defaultProps = {
+  image: "/images/reports-banner.png",
+  desc: "Hello World",
 };
 
 const Wrapper = styled.div`
   margin-bottom: 2rem;
+  /* height: 60%; */
   .overlay {
     height: inherit;
     .wrapper {
@@ -45,7 +50,7 @@ const Wrapper = styled.div`
       width: 100%;
       max-width: 700px;
       margin: auto;
-      h1 {
+      &-desc {
         font-size: 3rem;
         line-height: 4.5rem;
         text-align: center;

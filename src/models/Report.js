@@ -6,14 +6,14 @@ const ReportSchema = new Schema(
   {
     court: String,
     suit_no: String,
-    title: String,
+    title: { type: String, text: true },
     summary: String,
-    body: String,
+    body: { type: String, text: true },
     date: Date,
     vol: String,
     year: String,
     likes: { type: Number, default: 0 },
-    caseRef: String,
+    caseRef: { type: String, text: true },
     slug: { type: String, slug: "title" },
     comments: [{ type: Schema.Types.ObjectId, ref: "RepComment" }],
     judgesList: [{ type: Schema.Types.ObjectId, ref: "Judge" }],
@@ -24,9 +24,20 @@ const ReportSchema = new Schema(
   },
   {
     timestamps: true,
+    autoIndex: false,
   }
 );
-
+// ReportSchema.index(
+//   { body: "text", caseRef: "text", title: "text" },
+//   {
+//     weights: {
+//       title: 1,
+//       caseRef: 2,
+//       body: 3,
+//     },
+//   }
+// );
+ReportSchema.index({ "$**": "text" });
 ReportSchema.plugin(slug);
 
 const RepCommentSchema = new Schema({

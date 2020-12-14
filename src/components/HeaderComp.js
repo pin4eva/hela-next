@@ -1,7 +1,5 @@
-import { MobileNavAtom } from "atoms/MobileNav";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const HeaderComp = () => {
@@ -42,7 +40,9 @@ const HeaderComp = () => {
             ))}
 
             <li className="nav-item">
-              <button className="btn btn-outline-primary btn-sm">Login</button>
+              <Link href="/login">
+                <a className="btn btn-outline-primary btn-sm">Login</a>
+              </Link>
             </li>
           </ul>
         </div>

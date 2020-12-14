@@ -11,6 +11,8 @@ import { ThemeProvider as Styledtheme } from "styled-components";
 import { ApolloProvider } from "@apollo/client";
 import { useApollo } from "apollo";
 import "react-mde/lib/styles/css/react-mde-all.css";
+// import "bootstrap/dist/js/bootstrap";
+
 // import "utils/scripts";
 
 if (typeof window !== "undefined") {

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import Link from "next/link";
-import MoreIcon from "../shared/MoreIcon";
-import { useLazyQuery, useMutation } from "@apollo/client";
-import {
-  DELETE_REPORT_MUTATION,
-  GET_LIMITED_REPORTS,
-} from "apollo/queries/reportQuery";
-import styled from "styled-components";
-import { Notification } from "rsuite";
-import { useRecoilState } from "recoil";
+import { useMutation } from "@apollo/client";
+import { DELETE_REPORT_MUTATION } from "apollo/queries/reportQuery";
 import { ReportsAtom } from "atoms/ReportsAtom";
+import dayjs from "dayjs";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React from "react";
+import { useRecoilState } from "recoil";
+import { Notification } from "rsuite";
+import styled from "styled-components";
+import MoreIcon from "../shared/MoreIcon";
 
-const ReportItem = ({ report, onDelete }) => {
+const ReportItem = ({ report, onDelete, edit }) => {
+  const [reports, setReports] = useRecoilState(ReportsAtom);
   const [deleteReport, { loading: deleting }] = useMutation(
     DELETE_REPORT_MUTATION
   );
@@ -27,7 +26,7 @@ const ReportItem = ({ report, onDelete }) => {
         title: "Success",
         description: <p>Successfully deleted {data.deleteReport.title} </p>,
       });
-      onDelete(data.deleteReport._id);
+      setReports(reports.filter((rep) => rep._id !== data.deleteReport._id));
     } catch (error) {
       console.log(error);
     }
@@ -38,11 +37,20 @@ const ReportItem = ({ report, onDelete }) => {
         <Link href={`/reports/${report.slug}`}>{report.title}</Link>
       </td>
       <td>{report.author}</td>
-      <td>{report.createdAt}</td>
+      <td>{dayjs(report.createdAt).format("DD-MM-YYYY")}</td>
       <td>
         <MoreIcon>
-          <div>Edit</div>
-          <div onClick={() => removeReport(report._id)}>Delete</div>
+          <div onClick={() => edit(report.slug)}>
+            {" "}
+            <i
+              className="fas fa-pen mr-5"
+              style={{ marginRight: "8px" }}
+            ></i>{" "}
+            Edit
+          </div>
+          <div onClick={() => removeReport(report._id)}>
+            <i className="fas fa-times text-danger"></i> Delete
+          </div>
         </MoreIcon>
       </td>
     </Tr>
@@ -59,9 +67,11 @@ const Tr = styled.tr`
 ReportItem.propTypes = {
   report: PropTypes.object,
   onDelete: PropTypes.func,
+  edit: PropTypes.func,
 };
 
-const ReportTableComp = ({ reports }) => {
+const ReportTableComp = ({ reports, onUpdate }) => {
+  if (!reports?.length) return <p>Getting reports....</p>;
   return (
     <Wrapper>
       <table className="table table-borderless table-striped">
@@ -75,7 +85,7 @@ const ReportTableComp = ({ reports }) => {
         </thead>
         <tbody>
           {reports.map((report, i) => (
-            <ReportItem key={i} report={report} />
+            <ReportItem key={i} report={report} edit={onUpdate} />
           ))}
         </tbody>
       </table>
@@ -88,6 +98,7 @@ const Wrapper = styled.div``;
 ReportTableComp.propTypes = {
   reports: PropTypes.array,
   onDelete: PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 
 export default ReportTableComp;

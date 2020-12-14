@@ -64,14 +64,10 @@ export default {
     },
     getReport: async (_, { slug }) => {
       // await auth();
+      let report = await Report.findOne({ slug });
+      if (!report) throw Error("No record found");
       try {
-        let report = await Report.findOne({ slug });
-        let comment = await RepComment.find({ report: report._id }).populate({
-          path: "author",
-          select: ["_id", "name"],
-        });
-
-        return { ...report._doc, comment };
+        return report;
       } catch (error) {
         throw new Error(error);
       }
@@ -145,11 +141,12 @@ export default {
       }
     },
     updateReport: async (_, { input }, { token }) => {
-      const user = await authentication(token);
+      // const user = await authentication(token);
       try {
         const report = await Report.findOneAndUpdate(
           { _id: input._id },
-          { ...input, updated_by: user._id },
+          // { ...input, updated_by: user._id },
+          input,
           {
             new: true,
           }
@@ -221,6 +218,18 @@ export default {
         );
         comment.remove();
         return comment._id;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    searchReport: async (_, { query }) => {
+      try {
+        const reports = await (await Report.find().limit(10)).filter(
+          (report) =>
+            report._doc.title.toLowerCase().includes(query.toLowerCase()) ||
+            report._doc.body.toLowerCase().includes(query.toLowerCase())
+        );
+        return reports;
       } catch (error) {
         throw new Error(error);
       }

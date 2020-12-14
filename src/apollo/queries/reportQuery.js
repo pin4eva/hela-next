@@ -8,16 +8,12 @@ export const ReportFragment = gql`
     summary
     year
     date
-
     vol
     body
     likes
     caseRef
     slug
     createdAt
-    comments
-    added_by
-    updated_by
   }
 `;
 
@@ -123,6 +119,10 @@ export const GET_LIMITED_REPORTS = gql`
       title
       vol
       slug
+      createdAt
+      caseRef
+      court
+      summary
       added_by {
         _id
         name
@@ -142,6 +142,19 @@ export const GET_MY_REPORTS = gql`
         _id
         name
       }
+    }
+  }
+`;
+
+export const SEARCH_REPORT = gql`
+  mutation($query: String) {
+    searchReport(query: $query) {
+      _id
+      title
+      slug
+      court
+      summary
+      caseRef
     }
   }
 `;

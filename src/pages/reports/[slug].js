@@ -1,17 +1,19 @@
 import { getReport, getReports } from "apollo/actions/reports";
-import React from "react";
+import Markdown from "markdown-to-jsx";
 import PropTypes from "prop-types";
-import { Spinner } from "react-bootstrap";
-import ReactMarkdown from "react-markdown/with-html";
+import React from "react";
+import { Spinner } from "theme-ui";
+import styles from "./md.module.scss";
 
 const SingleReportPage = ({ single }) => {
-  console.log(single);
   if (!single) return <Spinner />;
   return (
     <div className="container text-justify">
-      <h4>{single.title}</h4>
-
-      <ReactMarkdown source={single.body} />
+      {/* <h4>{single.title}</h4> */}
+      <div className={styles.markdown}>
+        <Markdown>{single.body}</Markdown>
+      </div>
+      {/* <ReactMarkdown source={single.body} /> */}
     </div>
   );
 };

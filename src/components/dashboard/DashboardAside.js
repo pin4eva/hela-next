@@ -15,7 +15,7 @@ const DashboardAside = () => {
   });
 
   return (
-    <Aside className="dashboard-aside bg-green " ref={ref}>
+    <Aside className="dashboard-aside bg-info  " ref={ref}>
       <div className="sidebar-wrapper text-light py-3">
         <div className="d-flex container  align-items-center justify-content-between">
           <h6 className="m-0">Hela</h6>{" "}

@@ -19,7 +19,9 @@
 @function set-color($color) {
   @if (lightness($color) >40) {
     @return $light;
-  } @else {
+  }
+
+  @else {
     @return $dark;
   }
 }
@@ -29,10 +31,12 @@
     from {
       transform: translateX(0);
     }
+
     to {
       transform: translateX(-100vw);
     }
   }
+
   animation-name: open-close;
   animation-delay: 0.8s;
 }

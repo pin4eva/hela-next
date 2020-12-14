@@ -13,6 +13,10 @@ import { volumes } from "utils/reportUtils";
 import { useMutation } from "@apollo/client";
 import { ADD_REPORT_MUTATION } from "apollo/queries/reportQuery";
 import ThemeButton from "../shared/ThemeButton";
+import { APPEAL_COURT, SUPREME_COURT } from "utils/constants";
+import { compiler } from "markdown-to-jsx";
+import { useRecoilState } from "recoil";
+import { ReportsAtom } from "atoms/ReportsAtom";
 
 dayjs.extend(utc);
 
@@ -23,8 +27,13 @@ const converter = new Converter({
   tasklists: true,
 });
 
+// const mdCompiler = (data) => {
+//   compiler()
+// }
+
 const AddReportsComp = ({ onAdd, onCancel }) => {
   const [selectedTab, setSelectedTab] = useState("write");
+  const [reports, setReports] = useRecoilState(ReportsAtom);
   const [addReport, { loading }] = useMutation(ADD_REPORT_MUTATION);
   const [info, setInfo] = useState({
     title: "",
@@ -64,7 +73,7 @@ const AddReportsComp = ({ onAdd, onCancel }) => {
     try {
       const { data } = await addReport({ variables: { input: reportData } });
       notify("success", "Success", `Successfully add ${data.addReport.title}`);
-      // onAdd(data.addReport);
+      setReports([...reports, data.addReport]);
       onCancel();
     } catch (error) {
       console.log(error);
@@ -85,8 +94,8 @@ const AddReportsComp = ({ onAdd, onCancel }) => {
               onChange={(e) => setInfo({ ...info, court: e.target.value })}
             >
               <option value=""></option>
-              <option>Supreme court of appeal</option>
-              <option>Court of appeal </option>
+              <option>{SUPREME_COURT}</option>
+              <option>{APPEAL_COURT} </option>
             </Select>
           </div>
           <div className="form-group">
@@ -130,8 +139,9 @@ const AddReportsComp = ({ onAdd, onCancel }) => {
               onChange={(e) => setInfo({ ...info, summary: e })}
               selectedTab={selectedTab}
               onTabChange={setSelectedTab}
-              generateMarkdownPreview={(markdown) =>
-                Promise.resolve(converter.makeHtml(markdown))
+              generateMarkdownPreview={
+                (markdown) => Promise.resolve(compiler(markdown))
+                // Promise.resolve(converter.makeHtml(markdown))
               }
             />
           </div>
@@ -143,8 +153,9 @@ const AddReportsComp = ({ onAdd, onCancel }) => {
               onChange={(e) => setInfo({ ...info, body: e })}
               selectedTab={selectedTab}
               onTabChange={setSelectedTab}
-              generateMarkdownPreview={(markdown) =>
-                Promise.resolve(converter.makeHtml(markdown))
+              generateMarkdownPreview={
+                (markdown) => Promise.resolve(compiler(markdown))
+                // Promise.resolve(converter.makeHtml(markdown))
               }
             />
           </div>

@@ -1,13 +1,16 @@
 @import "./variables";
 @import "./mixins";
-@import "bootstrap/scss/bootstrap-reboot.scss";
-@import "bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+// @import "bootstrap/scss/bootstrap-reboot.scss";
+
 @import "./global";
 @import "./helpers";
 @import "./components/header";
 @import "./components/moreicon.scss";
 @import "./pages/home.scss";
 @import "./pages/dashboard";
+@import "./pages/login";
+
 @import "rsuite/dist/styles/rsuite-default.css";
 
 #modal-wrapper {
@@ -19,6 +22,7 @@
 
   @include transition();
   z-index: 2;
+
   .theme-modal {
     background-color: white;
     box-shadow: 2px 1px 2px rgba(0, 0, 0, 0.2);

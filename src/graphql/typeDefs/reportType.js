@@ -60,6 +60,7 @@ export const ReportTypes = gql`
     updateReport(input: ReportInput): Report
     deleteReport(_id: ID): Report
     likeReport(_id: ID): Int
+    searchReport(query: String): [Report]
 
     # RepComment
     addRepComment(report: ID, content: String, author: ID): RepComment

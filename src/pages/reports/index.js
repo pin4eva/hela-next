@@ -1,66 +1,99 @@
 import HeaderBannerComp from "@/components/HeaderBanner";
+import SearchReportComp from "@/components/reports/SearchReport";
 import FrontLayout from "@/layouts/FrontLayout";
-import React, { useState } from "react";
+import { useLazyQuery } from "@apollo/client";
+import { GET_LIMITED_REPORTS } from "apollo/queries/reportQuery";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { Fragment } from "react/cjs/react.production.min";
 import styled from "styled-components";
+import { Spinner } from "theme-ui";
+import { APPEAL_COURT, SUPREME_COURT } from "utils/constants";
 
 const ReportsListPage = () => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState("All");
+  // const [count, setCount] = useState(0);
+  const [reports, setReports] = useState([]);
+  const [getReports, { loading, data }] = useLazyQuery(GET_LIMITED_REPORTS, {
+    onCompleted: (data) => setReports(data.getLimitedReports),
+    onError: (err) => console.log(err),
+  });
+
+  useEffect(() => {
+    const getReport = async () => {
+      await getReports({ variables: { skip: 0, limit: 5 } });
+    };
+    getReport();
+  }, []);
+
+  useEffect(() => {
+    if (activeTab !== "All") {
+      setReports(
+        data?.getLimitedReports.filter((rep) => rep.court === activeTab)
+      );
+    }
+
+    return () => setReports(data?.getLimitedReports);
+  }, [activeTab]);
+
+  const handleResults = (data) => {
+    setReports(data);
+  };
+
+  // if (loading) return <Spinner />;
   return (
     <FrontLayout>
       <HeaderBannerComp image="/images/reports-banner.png" />
       <Wrapper>
         <div className="reports">
           <div className="container">
-            <div className="reports-search">
-              <input
-                type="search"
-                name="reports-search-input"
-                className="form-control"
-                placeholder="Search reports"
-              />
-              <i className="fas fa-search c-hand"></i>
-            </div>
-
-            <div className="reports-tab mt-4">
-              <ul className="nav nav-tabs">
-                {tabList.map((tab, i) => (
-                  <li className="nav-item" key={i}>
-                    <a
-                      className={`nav-link c-hand ${
-                        activeTab === i ? "active" : ""
-                      }`}
-                      onClick={() => setActiveTab(i)}
-                    >
-                      {tab}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="reports-map">
-              {reports.map((report, i) => (
-                <div className="wrapper my-3 " key={i}>
-                  <div className="wrapper-header">
-                    <h6 className="mt-3 mb-0">{report.title}</h6>
-                    <div className="small font-italic d-flex justify-content-between mb-3">
-                      <small>{report.court}</small>
-                      <small>{report.caseRef}</small>
-                    </div>
-                  </div>
-
-                  <p className="text-small">
-                    Adipiscing luctus potenti nunc etiam mauris in mollis
-                    tristique. Nibh integer iaculis vehicula interdum tristique
-                    lectus magna. Sodales malesuada vel est metus. Faucibus
-                    pretium pulvinar. Adipiscing luctus potenti nunc etiam
-                    mauris in mollis tristique. Nibh integer iaculis vehicula
-                    interdum tristique lectus magna. Sodales malesuada vel est
-                    metus. Faucibus pretium pulvinar.
-                  </p>
+            <SearchReportComp getResults={handleResults} />
+            {loading ? (
+              <Spinner />
+            ) : (
+              <Fragment>
+                <div className="reports-tab mt-4">
+                  <ul className="nav nav-tabs">
+                    {tabList.map((tab, i) => (
+                      <li className="nav-item" key={i}>
+                        <a
+                          className={`nav-link c-hand ${
+                            activeTab === tab ? "active" : ""
+                          }`}
+                          onClick={() => setActiveTab(tab)}
+                        >
+                          {tab}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              ))}
-            </div>
+
+                <div className="reports-map">
+                  {reports?.map((report, i) => (
+                    <div className="wrapper my-3 " key={i}>
+                      <div className="wrapper-header">
+                        <Link href={`/reports/${report.slug}`}>
+                          <h6 className="mt-3 mb-0 c-hand hover-primary">
+                            {report.title}
+                          </h6>
+                        </Link>
+                        <div className="small font-italic d-flex justify-content-between mb-3">
+                          <small className="text-uppercase">
+                            {report.court}
+                          </small>
+                          <small className="text-uppercase">
+                            {report.caseRef}
+                          </small>
+                        </div>
+                      </div>
+
+                      <p className="text-small">{report.summary}</p>
+                    </div>
+                  ))}
+                </div>
+              </Fragment>
+            )}
           </div>
         </div>
       </Wrapper>
@@ -69,22 +102,13 @@ const ReportsListPage = () => {
 };
 
 const Wrapper = styled.div`
-  .reports {
-    &-search {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      max-width: 768px;
-      margin: 4rem auto;
-
-      input {
-        margin-right: 1rem;
-      }
-      .fa-search {
-        font-size: 1.5rem;
-      }
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
     }
-
+  }
+  .reports {
     &-tab {
       .nav-tabs {
         .nav-link {
@@ -107,27 +131,4 @@ const Wrapper = styled.div`
 
 export default ReportsListPage;
 
-const tabList = [" All", "Suppreme Court", "Court of Appeal"];
-
-const reports = [
-  {
-    title: "OGUNSANYA OLUWASEYI V THE STATE",
-    court: "Supprem Court",
-    caseRef: "HELA-11323-vol-2-1125",
-  },
-  {
-    title: "PETER AKALIRO V THE STATE",
-    court: "Court of Appeal",
-    caseRef: "HELA-11323-vol-2-1125",
-  },
-  {
-    title: "OGUNSANYA OLUWASEYI V THE STATE",
-    court: "Supprem Court",
-    caseRef: "HELA-11323-vol-2-1125",
-  },
-  {
-    title: "OGUNSANYA OLUWASEYI V THE STATE",
-    court: "Court of Appeal",
-    caseRef: "HELA-11323-vol-2-1125",
-  },
-];
+const tabList = ["All", SUPREME_COURT, APPEAL_COURT];
