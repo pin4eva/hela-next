@@ -6,13 +6,12 @@ import ReactMarkdown from "react-markdown/with-html";
 
 const SingleReportPage = ({ single }) => {
   console.log(single);
-
   if (!single) return <Spinner />;
   return (
-    <div>
-      <h2>{single.title}</h2>
+    <div className="container text-justify">
+      <h4>{single.title}</h4>
 
-      <ReactMarkdown source={single.body} escapeHtml={false} />
+      <ReactMarkdown source={single.body} />
     </div>
   );
 };
@@ -37,6 +36,6 @@ export const getStaticPaths = async () => {
 
   return {
     paths: data?.map((report) => `/reports/${report.slug}`),
-    fallback: true,
+    fallback: false,
   };
 };

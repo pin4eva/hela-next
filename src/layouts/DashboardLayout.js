@@ -1,13 +1,31 @@
 import DashboardAside from "@/components/dashboard/DashboardAside";
+import { useLazyQuery } from "@apollo/client";
+import { GET_LIMITED_REPORTS } from "apollo/queries/reportQuery";
+import { ReportsAtom } from "atoms/ReportsAtom";
 import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
+import { useSetRecoilState } from "recoil";
 
 const DashboardLayout = ({ children, title }) => {
   const [open, setOpen] = useState(false);
+  const setReports = useSetRecoilState(ReportsAtom);
 
   const handleToggle = () => {
     setOpen(true);
   };
+
+  const [getReport] = useLazyQuery(GET_LIMITED_REPORTS, {
+    onCompleted: (data) => setReports(data.getLimitedReports),
+    onError: (err) => console.log(err),
+  });
+
+  useEffect(() => {
+    const getLimited = async () => {
+      await getReport({ variables: { limit: 10, skip: 0 } });
+    };
+
+    getLimited();
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

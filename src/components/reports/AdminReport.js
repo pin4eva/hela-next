@@ -1,17 +1,18 @@
-import { useLazyQuery, useQuery } from "@apollo/client";
-import { GET_LIMITED_REPORTS } from "apollo/queries/reportQuery";
-import Link from "next/link";
-import React, { Fragment } from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import { ReportsAtom } from "atoms/ReportsAtom";
+import React, { Fragment, useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { Grid } from "theme-ui";
-import MoreIcon from "../shared/MoreIcon";
 import AddReportsComp from "./AddReports";
 import ReportTableComp from "./ReportTable";
 
 const AdminReportComp = () => {
   const [view, setView] = useState("main");
+  const [reports, setReports] = useRecoilState(ReportsAtom);
+
+  const handleAddReport = (data) => {
+    setReports([...reports, data]);
+  };
 
   return (
     <Wrapper>
@@ -32,7 +33,7 @@ const AdminReportComp = () => {
         <Fragment>
           <div className="reports-table my-4">
             <div className="card">
-              <ReportTableComp />
+              <ReportTableComp reports={reports} />
             </div>
           </div>
 
@@ -46,7 +47,12 @@ const AdminReportComp = () => {
           </div>
         </Fragment>
       )}
-      {view === "add" && <AddReportsComp onCancel={() => setView("main")} />}
+      {view === "add" && (
+        <AddReportsComp
+          onAdd={handleAddReport}
+          onCancel={() => setView("main")}
+        />
+      )}
     </Wrapper>
   );
 };
