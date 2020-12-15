@@ -24,15 +24,15 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
+    "/login": [
+      "static/chunks/main.js",
+      "static/chunks/webpack.js",
+      "static/chunks/pages/login.js"
+    ],
     "/qa": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
       "static/chunks/pages/qa.js"
-    ],
-    "/reports": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/reports.js"
     ]
   },
   "ampFirstPages": []

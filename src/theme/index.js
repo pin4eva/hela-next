@@ -60,4 +60,18 @@ export const theme = {
       color: "text",
     },
   },
+  badges: {
+    primary: {
+      color: "background",
+      bg: "primary",
+    },
+    outline: {
+      color: "primary",
+      bg: "transparent",
+      boxShadow: "inset 0 0 0 1px",
+    },
+    circle: {
+      borderRadius: "100%",
+    },
+  },
 };

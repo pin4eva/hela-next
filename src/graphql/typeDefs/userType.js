@@ -21,6 +21,7 @@ export const UserType = gql`
     image: String
     verified: Boolean
     createdAt: Date
+    accountType: String
   }
 
   type Token {

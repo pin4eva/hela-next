@@ -34,7 +34,7 @@ const LoginComp = ({ onSwitch }) => {
                   className="form-control"
                 />
 
-                <div className="text-center mt-5 mb-5">
+                <div className="text-center  mb-5">
                   <ThemeButton className="btn btn-primary">Login</ThemeButton>
                 </div>
               </form>

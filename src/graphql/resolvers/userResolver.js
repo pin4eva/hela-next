@@ -17,26 +17,6 @@ const BASE_URL =
 
 const randId = nanoid(5);
 
-// const transport = nodeMailer.createTransport({
-//   host: config.MAIL_HOST,
-//   port: 465,
-//   secure: true,
-//   auth: {
-//     user: config.MAIL_ADDRESS,
-//     pass: config.MAIL_PASS,
-//   },
-// });
-
-// const transport = nodeMailer.createTransport({
-// 	// host: config.MAIL_HOST,
-// 	// port: 465,
-// 	// secure: true,
-// 	service: "gmail",
-// 	auth: {
-// 		user: config.GMAIL_ADDRESS,
-// 		pass: config.MAIL_PASS,
-// 	},
-// });
 /**
  * TODO:
  *
@@ -89,7 +69,7 @@ export default {
       const { name, email, password, username } = input;
       if (!email || !name || !password) throw new Error("Fill all input");
       let user = await User.findOne({ email });
-      // user = await User.findOne({ username });
+      user = await User.findOne({ username });
       if (user)
         throw new Error("User with same email or username already exist");
       try {

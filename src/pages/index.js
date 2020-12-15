@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
+import HeaderComp from "@/components/HeaderComp";
+import ModalComp from "@/components/Modal";
+import PricingComp from "@/components/Pricing";
 import FrontLayout from "@/layouts/FrontLayout";
 import { ModalAtom } from "atoms/ModalAtom";
-import { useRecoilValue } from "recoil";
-import ModalComp from "@/components/Modal";
-import styled from "styled-components";
 import Image from "next/image";
-import PricingComp from "@/components/Pricing";
-import ThemeButton from "@/components/shared/ThemeButton";
-import HeaderComp from "@/components/HeaderComp";
+import Link from "next/link";
+import PropTypes from "prop-types";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import styled from "styled-components";
 // import "./index.scss";
 
 const Home = (props) => {
@@ -42,7 +42,9 @@ const Home = (props) => {
             </div>
           </div>
           <div className="text-center">
-            <button className="btn btn-primary">Get started</button>
+            <Link href="/login">
+              <a className="btn btn-primary">Get started</a>
+            </Link>
           </div>
         </div>
 

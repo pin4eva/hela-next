@@ -1,14 +1,20 @@
 import LoginComp from "@/components/auth/LoginComp";
 import SignupComp from "@/components/auth/SignupComp";
+import Head from "next/head";
 import React, { useState } from "react";
 
 const loginPage = () => {
-  const [view, setView] = useState("signup");
+  const [view, setView] = useState("Login");
   return (
-    <div id="login">
-      {view === "login" && <LoginComp onSwitch={() => setView("signup")} />}
-      {view === "signup" && <SignupComp onSwitch={() => setView("login")} />}
-    </div>
+    <>
+      <Head>
+        <title>{view}</title>
+      </Head>
+      <div id="login">
+        {view === "Login" && <LoginComp onSwitch={() => setView("Signup")} />}
+        {view === "Signup" && <SignupComp onSwitch={() => setView("Login")} />}
+      </div>
+    </>
   );
 };
 

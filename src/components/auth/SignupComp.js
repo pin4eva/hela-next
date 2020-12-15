@@ -1,10 +1,34 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ThemeButton from "../shared/ThemeButton";
 import PropTypes from "prop-types";
 
 const SignupComp = ({ onSwitch }) => {
+  const [radio, setRadio] = useState(false);
+  const [info, setInfo] = useState({
+    username: "",
+    email: "",
+    password: "",
+    password2: "",
+    accountType: "",
+  });
+
+  const handleChange = (e) => {
+    let { value, name } = e.target;
+    setInfo({
+      ...info,
+      [name]: value,
+    });
+  };
+
+  const validate = (name) => {};
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(info);
+  };
   return (
     <Wrapper className="container">
       <div className="login">
@@ -22,24 +46,51 @@ const SignupComp = ({ onSwitch }) => {
                 </button>
               </div>
 
-              <form>
+              <form onSubmit={handleSubmit}>
                 <input
                   type="text"
                   placeholder="Username"
                   className="form-control"
+                  name="username"
+                  value={info.username}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="form-control"
+                  name="email"
+                  value={info.email}
+                  onChange={handleChange}
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Password"
                   className="form-control"
+                  name="password"
+                  value={info.password}
+                  onChange={handleChange}
+                  required
                 />
                 <input
                   type="password"
                   placeholder="Confirm Password"
                   className="form-control"
+                  name="password2"
+                  value={info.password2}
+                  onChange={handleChange}
+                  required
                 />
                 <div className="form-group">
-                  <select name="accountType" className="form-control">
+                  <select
+                    name="accountType"
+                    className="form-control"
+                    value={info.accountType}
+                    onChange={handleChange}
+                    required
+                  >
                     <option value="">Account Type</option>
                     <option>Lawyer</option>
                     <option>Student</option>
@@ -47,12 +98,25 @@ const SignupComp = ({ onSwitch }) => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <input type="radio" name="" />{" "}
+                  <input
+                    type="checkbox"
+                    checked={radio}
+                    onChange={() => setRadio(!radio)}
+                    required
+                    name=""
+                    className="mr-3"
+                  />
+
                   <label>I Agree to the terms and conditions</label>
                 </div>
 
                 <div className="text-center mt-5 mb-5">
-                  <ThemeButton className="btn btn-primary">Login</ThemeButton>
+                  <ThemeButton
+                    disabled={!radio}
+                    className=" rs-radio-checker btn btn-primary"
+                  >
+                    Login
+                  </ThemeButton>
                 </div>
               </form>
 

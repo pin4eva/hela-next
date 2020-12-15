@@ -12,7 +12,7 @@ const UserSchema = new Schema(
     role: { type: String, default: "user" },
     isActive: { type: Boolean, default: false },
     verified: { type: Boolean, default: false },
-    designation: { type: String, default: "Regular" }, //if Lawyer, Student, Others
+    accountType: { type: String, default: "Regular" },
     rank: { type: Number, default: 0 },
     points: { type: Number, default: 0 },
     contact: String,

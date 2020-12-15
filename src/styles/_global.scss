@@ -39,6 +39,16 @@ body {
   // color: $text-color;
 }
 
+a,
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -80,6 +90,12 @@ h6 {
   border-radius: 3.125rem;
   padding: $btn-padding;
 
+  &:active,
+  &:focus {
+    outline: none;
+
+  }
+
   &-primary {
     color: $light;
   }
@@ -94,19 +110,16 @@ h6 {
   }
 }
 
-
-
-
-
-a,
-.nav-link {
-  color: inherit;
-  text-decoration: none;
-
-  // &:hover {
-  //   text-decoration: none;
-  // }
+.mde-text {
+  &:focus {
+    outline: none;
+    border: 1px solid $dark;
+  }
 }
+
+
+
+
 
 
 .card {

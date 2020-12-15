@@ -1,31 +1,21 @@
-import React from "react";
-
-import styled from "styled-components";
-import { Select } from "theme-ui";
-import ReactMde from "react-mde";
-import { Converter } from "showdown";
-import { useState } from "react";
-import PropTypes from "prop-types";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-import { Notification } from "rsuite";
-import { volumes } from "utils/reportUtils";
 import { useMutation } from "@apollo/client";
 import { ADD_REPORT_MUTATION } from "apollo/queries/reportQuery";
-import ThemeButton from "../shared/ThemeButton";
-import { APPEAL_COURT, SUPREME_COURT } from "utils/constants";
-import { compiler } from "markdown-to-jsx";
-import { useRecoilState } from "recoil";
 import { ReportsAtom } from "atoms/ReportsAtom";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import { compiler } from "markdown-to-jsx";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import ReactMde from "react-mde";
+import { useRecoilState } from "recoil";
+import { Notification } from "rsuite";
+import styled from "styled-components";
+import { Select } from "theme-ui";
+import { APPEAL_COURT, SUPREME_COURT } from "utils/constants";
+import { volumes } from "utils/reportUtils";
+import ThemeButton from "../shared/ThemeButton";
 
 dayjs.extend(utc);
-
-const converter = new Converter({
-  tables: true,
-  simplifiedAutoLink: true,
-  strikethrough: true,
-  tasklists: true,
-});
 
 // const mdCompiler = (data) => {
 //   compiler()
