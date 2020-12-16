@@ -1,4 +1,4 @@
-import { GET_USER, AUTH } from "apollo/queries/userQuery";
+import { GET_USER, AUTH, GET_AUTH } from "apollo/queries/userQuery";
 import { initializeApollo } from "../index";
 import jscookie from "js-cookie";
 
@@ -12,19 +12,32 @@ export const getUser = async (_id) => {
 };
 
 export const getAuth = async (token) => {
-  const apollo = await initializeApollo(null, token);
+  const apollo = await initializeApollo();
   try {
     const { data } = await apollo.query({
-      query: AUTH,
+      query: GET_AUTH,
+      variables: { token },
     });
-    return data.auth;
+    return data.me;
   } catch (error) {
-    jscookie.remove("token");
     console.log(error);
-    if (error?.graphQLErrors) {
-      jscookie.remove("token");
-    }
-
-    return null;
   }
 };
+
+// export const getAuth = async (token) => {
+//   const apollo = await initializeApollo(token);
+//   try {
+//     const { data } = await apollo.query({
+//       query: AUTH,
+//     });
+//     return data.auth;
+//   } catch (error) {
+//     jscookie.remove("token");
+//     console.log(error);
+//     if (error?.graphQLErrors) {
+//       jscookie.remove("token");
+//     }
+
+//     return null;
+//   }
+// };

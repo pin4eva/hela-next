@@ -8,9 +8,10 @@ const ThemeButton = (props) => {
   return (
     <Wrapper {...props}>
       {props.isLoading ? (
-        <>
-          <Spinner size="25" color="#fff" className="mr-2" /> Loading...
-        </>
+        <span className="d-flex align-items-center">
+          <Spinner size="25" color="#fff" />
+          <span className="ml-2">Loading...</span>
+        </span>
       ) : (
         props.children
       )}

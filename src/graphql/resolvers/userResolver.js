@@ -8,6 +8,7 @@ import { authentication } from "utils/auth";
 import { RepComment } from "models/Report";
 import User from "models/User";
 import sgMail from "@sendgrid/mail";
+import { setToken } from "utils/cookieUtils";
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const BASE_URL =
@@ -50,13 +51,16 @@ export default {
     },
     me: async (_, { token }) => {
       // if (!token) return null;
-      try {
-        const data = await jwt.verify(token, config.SECRET);
-        const user = await User.findOne({ _id: data._id }, { password: 0 });
-        return user;
-      } catch (error) {
-        throw new Error(error);
-      }
+      const user = await authentication(token);
+      if (user) return user;
+      else return null;
+      // try {
+      //   const data = await jwt.verify(token, config.SECRET);
+      //   const user = await User.findOne({ _id: data._id }, { password: 0 });
+      //   return user;
+      // } catch (error) {
+      //   throw new Error(error);
+      // }
     },
     auth: async (_, args, { token }) => {
       const user = await authentication(token);
@@ -65,9 +69,15 @@ export default {
     },
   },
   Mutation: {
+    validateUsername: async (_, { username }) => {
+      return await User.findOne({ username });
+    },
+    validateEmail: async (_, { email }) => {
+      return await User.findOne({ email });
+    },
     signup: async (_, { input }) => {
       const { name, email, password, username } = input;
-      if (!email || !name || !password) throw new Error("Fill all input");
+      if (!email || !password) throw new Error("Fill all input");
       let user = await User.findOne({ email });
       user = await User.findOne({ username });
       if (user)
@@ -80,16 +90,17 @@ export default {
           password: await bcrypt.hash(password, 10),
           token: nanoid(4),
         };
-        const mailOptions = {
-          from: "support@lawathenaeum.com",
-          to: info.email,
-          subject: "Please confirm your email",
-          html: `<h2 align="center">Thank you for registering</h2> <p>Please <a href="${BASE_URL}/verify/${info.token}">verify</a> your account to gain access to our platform</p> <p> or</> <p style="text-align:center;"> copy your verification code <b >${info.token}</b></p>`,
-        };
-        const data = await sgMail.send(mailOptions);
-        if (data) {
-          user = await User.create(info);
-        }
+        // const mailOptions = {
+        //   from: "support@lawathenaeum.com",
+        //   to: info.email,
+        //   subject: "Please confirm your email",
+        //   html: `<h2 align="center">Thank you for registering</h2> <p>Please <a href="${BASE_URL}/verify/${info.token}">verify</a> your account to gain access to our platform</p> <p> or</> <p style="text-align:center;"> copy your verification code <b >${info.token}</b></p>`,
+        // };
+        // const data = await sgMail.send(mailOptions);
+        // if (data) {
+        //   user = await User.create(info);
+        // }
+        user = await User.create(info);
 
         return user;
       } catch (error) {
@@ -110,11 +121,12 @@ export default {
           expiresIn: "1d",
         });
 
-        res.cookie("token", token, {
-          expires: new Date(Date.now() + 8 * 360000),
-          httpOnly: process.env.NODE_ENV === " production ",
-          secure: process.env.NODE_ENV === " production ",
-        });
+        setToken(res, token);
+        // res.cookie("token", token, {
+        //   expires: new Date(Date.now() + 8 * 360000),
+        //   httpOnly: process.env.NODE_ENV === " production ",
+        //   secure: process.env.NODE_ENV === " production ",
+        // });
 
         return { user, token };
       } catch (error) {

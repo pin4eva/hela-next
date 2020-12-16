@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { RecoilRoot } from "recoil";
 import Nprogress from "nprogress";
+import "styles/resets.css";
 import "styles/index.scss";
 import Router from "next/router";
 import { theme } from "theme";

@@ -47,6 +47,8 @@ export const UserType = gql`
     forgotPassword(token: String, password: String): User
     changePassword(password: String!, oldPassword: String!): User
     checkEmail(email: String): User
+    validateUsername(username: String): Boolean
+    validateEmail(email: String): Boolean
   }
 
   input SignupInput {
@@ -68,5 +70,6 @@ export const UserType = gql`
     bio: String
     image: String
     username: String
+    accountType: String
   }
 `;

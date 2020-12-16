@@ -50,6 +50,18 @@ export const GET_JUDGE_QUERY = gql`
   }
 `;
 
+export const GET_AUTH = gql`
+  query($token: String) {
+    me(token: $token) {
+      _id
+      email
+      name
+      username
+      image
+    }
+  }
+`;
+
 export const AUTH = gql`
   {
     auth {

@@ -108,6 +108,11 @@ h6 {
     color: $light;
     background-color: $green;
   }
+
+  &-blue {
+    background-color: $blue;
+    color: $light;
+  }
 }
 
 .mde-text {
@@ -119,15 +124,28 @@ h6 {
 
 
 
+input,
+.form-control {
+  &:focus {
+    outline: none !important;
+    // border: inherit;
+    box-shadow: none;
+    // -webkit-box-shadow: none;
+  }
 
 
+}
 
+// .was-validated .form-control:valid,
+// .form-control.is-valid;
 .card {
   padding: 1rem;
 }
 
 .form-group {
   margin-bottom: 1rem;
+
+
 }
 
 ul {

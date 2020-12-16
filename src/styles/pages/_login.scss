@@ -3,8 +3,6 @@
 
     display: flex;
     align-items: center;
-
-
 }
 
 .login {
@@ -13,36 +11,62 @@
     max-width: 920px;
     margin: auto;
 
+    // &.signup {
+    //     height: 100%;
+    //     margin-top: 3rem;
+    // }
+
     @include media-md-up {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 2rem;
     }
 
-    .form-control,
-    input {
-        border: none;
-
-        border-bottom: 1px solid $dark;
-
-
-        border-radius: 0;
-        background-color: transparent;
+    .form-group {
         margin-bottom: 1.5rem;
 
-        &:focus,
-        &:active {
-            outline: transparent !important;
+        .form-control,
+        input {
             border: none;
-
             border-bottom: 1px solid $dark;
+            border-radius: 0;
+            background-color: transparent;
+
+            &:focus,
+            &:active,
+            &:visited {
+                outline: transparent !important;
+                // border: none;
+                border-bottom: 1px solid $dark;
+                background-color: $light !important;
+            }
+
+
+            &.is-valid {
+                @extend .is-valid;
+
+                &:focus {
+                    box-shadow: none;
+                    border-bottom: 1px solid $success;
+                }
+            }
+
+            &.is-invalid {
+                @extend .is-invalid;
+
+                &:focus {
+                    box-shadow: none;
+                    border-bottom: 1px solid $danger;
+                }
+            }
+
+
         }
     }
 
     &-left {
         // background-color: yellow;
-        padding-top: 1rem;
-
+        // padding-top: 1rem;
 
         .container {
             height: 80%;
@@ -77,12 +101,24 @@
 
             &-icon,
             &-text {
-                background: black;
+
                 color: white;
                 height: 3rem;
+                width: 15%;
                 display: flex;
                 align-items: center;
-                padding: 0 1rem;
+                display: flex;
+                justify-content: center;
+                // padding: 0 1rem;
+
+                &.facebook {
+                    background: $blue;
+                }
+
+                &.google {
+                    background: black;
+                }
+
             }
 
             &-text {
@@ -93,6 +129,8 @@
                 font-weight: bold;
                 /* width: 100%; */
             }
+
+
         }
     }
 

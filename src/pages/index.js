@@ -178,7 +178,7 @@ const Home = (props) => {
           </div>
         </div>
 
-        <div className="testimonial ">
+        <div className="testimonial mb-5 ">
           <div className="testimonial-wrapper">
             <div className="testimonial-wrapper-display-pic">
               <Image src="/images/pic-3.png" width="566" height="466" />

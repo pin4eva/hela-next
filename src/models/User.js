@@ -3,12 +3,17 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    name: String,
+    name: { type: String, required: true },
+    username: {
+      type: String,
+      required: true,
+      min: [4, "Your username must be more than 4 characters"],
+      max: [20, "Username must not exceed 12 characters"],
+    },
     phone: String,
-    email: String,
-    password: String,
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true, min: 4 },
     token: String,
-    username: { type: String },
     role: { type: String, default: "user" },
     isActive: { type: Boolean, default: false },
     verified: { type: Boolean, default: false },

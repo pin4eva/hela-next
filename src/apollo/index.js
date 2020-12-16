@@ -18,7 +18,7 @@ function create(initialState, token) {
     uri:
       process.env.NODE_ENV !== "development"
         ? `${SERVER_URL}/api/graphql`
-        : "/api/graphql",
+        : "http://localhost:3000/api/graphql",
 
     fetch,
   });

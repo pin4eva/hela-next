@@ -4,7 +4,7 @@
 @import "./variables";
 @import "./mixins";
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-// @import "bootstrap/scss/bootstrap-reboot.scss";
+@import "bootstrap/scss/bootstrap-reboot.scss";
 
 @import "./global";
 @import "./helpers";
@@ -15,6 +15,19 @@
 @import "./pages/login";
 
 @import "rsuite/dist/styles/rsuite-default.css";
+
+// *:focus {
+//   outline: none;
+// }
+
+// .form-control {
+//   &:focus {
+//     // border: inherit;
+//     box-shadow: none;
+//     // -webkit-box-shadow: none;
+//   }
+
+// }
 
 #modal-wrapper {
   background-color: rgba(0, 0, 0, 0.3);

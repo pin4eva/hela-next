@@ -1,10 +1,38 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ThemeButton from "../shared/ThemeButton";
 import PropTypes from "prop-types";
+import { useMutation } from "@apollo/client";
+import { LOGIN_MUTATION } from "apollo/queries/userQuery";
 
 const LoginComp = ({ onSwitch }) => {
+  const [login, { loading }] = useMutation(LOGIN_MUTATION);
+  const [info, setInfo] = useState({
+    // username: "",
+    password: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    setInfo({
+      ...info,
+      [name]: value,
+    });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    // return console.log(info);
+    try {
+      const { data } = await login({ variables: { ...info } });
+      console.log(data);
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
   return (
     <Wrapper className="container">
       <div className="login">
@@ -15,27 +43,41 @@ const LoginComp = ({ onSwitch }) => {
 
               <div className="social-button my-5">
                 <button className="s-btn">
-                  <div className="social-button-icon">
+                  <div className="social-button-icon google">
                     <i className="fab fa-google fa-2x"></i>
                   </div>
-                  <div className="social-button-text">Sign in with Google</div>
+                  <div className="social-button-text google">
+                    Sign in with Google
+                  </div>
                 </button>
               </div>
 
-              <form>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  className="form-control"
-                />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="form-control"
-                />
+              <form onSubmit={submit}>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    className="form-control"
+                    name="email"
+                    value={info.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="form-control"
+                    name="password"
+                    value={info.password}
+                    onChange={handleChange}
+                  />
+                </div>
 
                 <div className="text-center  mb-5">
-                  <ThemeButton className="btn btn-primary">Login</ThemeButton>
+                  <ThemeButton className="btn btn-primary" isLoading={loading}>
+                    Login
+                  </ThemeButton>
                 </div>
               </form>
 

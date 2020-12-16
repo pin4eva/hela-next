@@ -9,11 +9,10 @@ const SingleReportPage = ({ single }) => {
   if (!single) return <Spinner />;
   return (
     <div className="container text-justify">
-      {/* <h4>{single.title}</h4> */}
+      <h4 className="text-center text-uppercase">{single.court}</h4>
       <div className={styles.markdown}>
         <Markdown>{single.body}</Markdown>
       </div>
-      {/* <ReactMarkdown source={single.body} /> */}
     </div>
   );
 };
