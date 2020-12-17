@@ -5,8 +5,13 @@ import ThemeButton from "../shared/ThemeButton";
 import PropTypes from "prop-types";
 import { useMutation } from "@apollo/client";
 import { LOGIN_MUTATION } from "apollo/queries/userQuery";
+import { useRecoilState } from "recoil";
+import { UserAtom } from "atoms/UserAtom";
+import { Notification } from "rsuite";
+import Router from "next/router";
 
 const LoginComp = ({ onSwitch }) => {
+  const [user, setUser] = useRecoilState(UserAtom);
   const [login, { loading }] = useMutation(LOGIN_MUTATION);
   const [info, setInfo] = useState({
     // username: "",
@@ -24,12 +29,24 @@ const LoginComp = ({ onSwitch }) => {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (!info.email || !info.password) return;
     // return console.log(info);
     try {
       const { data } = await login({ variables: { ...info } });
-      console.log(data);
-    } catch (error) {
-      console.log({ error });
+
+      if (data?.login) setUser(data.login.user);
+      Notification.success({
+        description: <p>Welcome {data.login.user.name} </p>,
+        title: "Login Successfull",
+      });
+      Router.push("/dashboard");
+    } catch (err) {
+      console.log({ err });
+      if (err?.graphQLErrors) {
+        err.graphQLErrors.map((er) => {
+          return alert(er.message);
+        });
+      }
     }
   };
 

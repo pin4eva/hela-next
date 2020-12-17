@@ -1,8 +1,7 @@
-
 .dashboard {
   display: flex;
   height: 100%;
-  background:$light-gray;
+
 
   input,
   .form-control {
@@ -16,7 +15,7 @@
   select {
     @extend .input-style;
     border-radius: 0;
-     padding: 0.5rem;
+    padding: 0.5rem;
 
   }
 
@@ -27,50 +26,75 @@
 
   .btn {
     @extend .rounded-0;
+
+    &-primary {
+      background-color: $dark-gray;
+      color: $light;
+      border-color: inherit;
+    }
+
+    &-add-rounded {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 100% !important;
+      @include transition();
+
+      &:hover {
+        background-color: $primary;
+      }
+    }
   }
- 
+
   &-aside {
-     height: 100%;
-     position: fixed;
-     z-index: 1;
-     left: 0;
-     top: 0;
-     width: 0;
-     display: none;
+    background-color: $dark-gray;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 0;
+    display: none;
 
-     &.open {
-       @include transition();
-       width: 20rem;
-       display: block;
-     }
-     
- @include media-md-up{
-     width: 100%;
-     max-width: 20rem;
-     display: block;
- }
-    
+    &.open {
+      @include transition();
+      width: 20rem;
+      display: block;
+    }
+
+    @include media-md-up {
+      width: 100%;
+      max-width: 20rem;
+      display: block;
+    }
+
 
   }
+
   &-main {
-   flex: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     margin: 0;
+    height: 100%;
+    // background-color: $blue;
 
     .wrapper {
       flex: 1;
+      background: $light-gray;
+      // background-color: $warning;
 
       .container {
         position: relative;
       }
     }
-    @include media-md-up{
+
+    @include media-md-up {
       margin-left: 20rem;
     }
 
-    
-    
+
+
   }
 }
 
@@ -78,9 +102,11 @@
   .report-tab {
     ul {
       list-style: none;
+
       .nav-link {
         padding: 0;
         margin: 0.5rem 1rem;
+
         &.active {
           // padding-bottom: 0;
           border-bottom: 2px solid $primary;

@@ -45,12 +45,12 @@ const AdminReportComp = () => {
           </div>
 
           <div className="report-add-btn">
-            <div
-              className="wrapper rounded-circle p-3 bg-primary c-hand"
+            <a
+              className="wrapper btn btn-primary btn-add-rounded p-3 "
               onClick={() => setView("add")}
             >
               <i className="fas fa-plus"></i>
-            </div>
+            </a>
           </div>
         </Fragment>
       )}
@@ -85,36 +85,6 @@ const Wrapper = styled.div`
     position: absolute;
     right: 0;
     bottom: 0;
-    .wrapper {
-      /* height: 3rem;
-      width: 3rem; */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 `;
 export default AdminReportComp;
-
-const reports = [
-  {
-    title: "OLUSEGUN ADEGBOYE V THE STATE",
-    author: "Chisom Ugwu",
-    createdAt: "December 12, 2020",
-  },
-  {
-    title: "OLUSEGUN ADEGBOYE V THE STATE",
-    author: "Chisom Ugwu",
-    createdAt: "December 12, 2020",
-  },
-  {
-    title: "OLUSEGUN ADEGBOYE V THE STATE",
-    author: "Chisom Ugwu",
-    createdAt: "December 12, 2020",
-  },
-  {
-    title: "OLUSEGUN ADEGBOYE V THE STATE",
-    author: "Chisom Ugwu",
-    createdAt: "December 12, 2020",
-  },
-];

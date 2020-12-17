@@ -4,6 +4,7 @@ import { setContext } from "apollo-link-context";
 import fetch from "isomorphic-unfetch";
 import Cookie from "js-cookie";
 import { useMemo } from "react";
+import { TOKEN_NAME } from "utils/cookieUtils";
 
 const SERVER_URL = "https://edfhr-dashboard-724077.us1.kinto.io";
 
@@ -26,7 +27,7 @@ function create(initialState, token) {
   const authLink = setContext(() => {
     return {
       headers: {
-        Authorization: `Bearer ${token || Cookie.get("token")}` || "",
+        Authorization: token || Cookie.get(TOKEN_NAME) || "",
       },
     };
   });

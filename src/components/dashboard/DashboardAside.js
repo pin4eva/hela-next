@@ -1,12 +1,19 @@
+import { UserAtom } from "atoms/UserAtom";
 import Image from "next/image";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { removeTokenCookie } from "utils/cookieUtils";
 import { useAwayListener } from "../AwayListner";
+import router from "next/router";
 
 const DashboardAside = () => {
+  const [user, setUser] = useRecoilState(UserAtom);
+
   const ref = useRef(null);
+
   useAwayListener(ref, () => {
     if (typeof window !== "undefined") {
       const sidebar = document.querySelector(".dashboard-aside");
@@ -14,11 +21,19 @@ const DashboardAside = () => {
     }
   });
 
+  const logout = () => {
+    removeTokenCookie();
+    router.push("/login");
+    setUser(null);
+  };
+
   return (
-    <Aside className="dashboard-aside bg-info  " ref={ref}>
+    <Aside className="dashboard-aside" ref={ref}>
       <div className="sidebar-wrapper text-light py-3">
         <div className="d-flex container  align-items-center justify-content-between">
-          <h6 className="m-0">Hela</h6>{" "}
+          <Link href="/">
+            <a className="flex-1 text-center c-hand">Hela</a>
+          </Link>
           <i
             className="fas fa-cog text-light-green d-md-none"
             // onClick={() => setIsOpen(!isOpen)}
@@ -26,15 +41,16 @@ const DashboardAside = () => {
         </div>
         <div className="profile container">
           <div className="text-center">
-            <div className="profile-image">
-              <Image
-                className="rounded-circle"
-                src="/images/my-dp.jpg"
-                width="100"
-                height="100"
+            <div className="profile-image d-flex flex-column align-items-center">
+              <img
+                className="avater-rounded"
+                src={user?.image}
+                alt="profile-image"
+                // width="100"
+                // height="100"
               />
-              <p className="profile-username my-3 font-weight-bold">
-                Peter Akaliro
+              <p className="profile-username my-2 font-weight-bold">
+                {user?.name}
               </p>
             </div>
           </div>
@@ -49,6 +65,9 @@ const DashboardAside = () => {
                 </Link>
               </li>
             ))}
+            <li className="nav-item" onClick={logout}>
+              <a className="nav-link c-hand">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -58,6 +77,7 @@ const DashboardAside = () => {
 
 DashboardAside.propTypes = {
   isOpen: PropTypes.bool,
+  user: PropTypes.object,
 };
 
 DashboardAside.defaultProps = {
@@ -80,6 +100,7 @@ const Aside = styled.aside`
 export default DashboardAside;
 
 const navLinks = [
+  { name: "Dashboard", link: "/dashboard" },
   { name: "Reports", link: "/dashboard/reports" },
   { name: "Practice Notes", link: "/dashboard/notes" },
   { name: "Q & A", link: "/dashboard/questions" },

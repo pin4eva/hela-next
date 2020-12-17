@@ -113,7 +113,7 @@ export default {
   },
   Mutation: {
     addReport: async (_, { input }, { token }) => {
-      // const user = await authentication(token);
+      const user = await authentication(token);
       const { date, vol } = input;
       let volume = vol.split(" ");
       volume = Number(volume[1]);
@@ -131,7 +131,7 @@ export default {
         const report = await Report.create({
           ...input,
           caseRef,
-          // added_by: user._id,
+          added_by: user._id,
           year,
         });
 
@@ -141,12 +141,12 @@ export default {
       }
     },
     updateReport: async (_, { input }, { token }) => {
-      // const user = await authentication(token);
+      const user = await authentication(token);
       try {
         const report = await Report.findOneAndUpdate(
           { _id: input._id },
-          // { ...input, updated_by: user._id },
-          input,
+          { ...input, updated_by: user._id },
+
           {
             new: true,
           }

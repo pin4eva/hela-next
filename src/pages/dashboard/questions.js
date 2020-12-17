@@ -1,5 +1,6 @@
 import DashboardLayout from "@/layouts/DashboardLayout";
 import React from "react";
+import withAuth from "utils/withAuth";
 
 const DashboardQuestionPage = () => {
   return (
@@ -11,4 +12,4 @@ const DashboardQuestionPage = () => {
   );
 };
 
-export default DashboardQuestionPage;
+export default withAuth(DashboardQuestionPage);

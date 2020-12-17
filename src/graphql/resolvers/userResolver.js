@@ -112,7 +112,7 @@ export default {
       let user = await User.findOne({ email });
       if (!user) throw new Error("No record found");
       let isMatch = await bcrypt.compareSync(password, user.password);
-      if (!isMatch) throw Error("Incorrect password");
+      if (!isMatch) throw Error("Incorrect email or password");
       let payload = {
         _id: user._id,
       };
@@ -227,6 +227,7 @@ export default {
         throw new Error(error);
       }
     },
+
     updateUser: async (_, { input }, { token }) => {
       await authentication(token);
       try {

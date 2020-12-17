@@ -8,7 +8,7 @@ export const UserFragment = gql`
     email
     role
     isActive
-    designation
+
     rank
     points
     contact
@@ -53,13 +53,10 @@ export const GET_JUDGE_QUERY = gql`
 export const GET_AUTH = gql`
   query($token: String) {
     me(token: $token) {
-      _id
-      email
-      name
-      username
-      image
+      ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 export const AUTH = gql`
@@ -81,6 +78,7 @@ export const LOGIN_MUTATION = gql`
         email
         role
         isActive
+        image
       }
     }
   }
@@ -143,6 +141,15 @@ export const CHANGE_PASSWORD = gql`
   mutation ChangePassword($password: String!, $oldPassword: String!) {
     changePassword(password: $password, oldPassword: $oldPassword) {
       name
+    }
+  }
+`;
+
+export const UPLOAD_USER_IMAGE = gql`
+  mutation($image: String, $_id: ID) {
+    uploadImage(_id: $_id, image: $image) {
+      _id
+      image
     }
   }
 `;

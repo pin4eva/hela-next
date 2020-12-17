@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useState } from "react";
+import SearchReportComp from "./SearchReport";
 
 const UserReportComp = (props) => {
   const [tabIndex, setTabIndex] = useState(1);
@@ -18,7 +19,7 @@ const UserReportComp = (props) => {
       </div>
 
       <h5 className="heading my-4">Supreme court Reports</h5>
-      <input type="search" className=" bg-secondary" />
+      <SearchReportComp />
 
       <div className="report-tab">
         <ul className="nav nav-tabs  ">

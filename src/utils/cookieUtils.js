@@ -1,4 +1,5 @@
 import { serialize, parse } from "cookie";
+import jscookie from "js-cookie";
 
 export const TOKEN_NAME = "token";
 export const MAX_AGE = 60 * 60 * 8;
@@ -16,20 +17,24 @@ export const setToken = (res, token) => {
 };
 
 export const removeTokenCookie = (res) => {
-  const cookie = serialize(TOKEN_NAME, "", {
-    maxAge: -1,
-    path: "/",
-  });
+  if (res) {
+    const cookie = serialize(TOKEN_NAME, "", {
+      maxAge: -1,
+      path: "/",
+    });
 
-  res.setHeader("Set-Cookie", cookie);
+    res.setHeader("Set-Cookie", cookie);
+  } else {
+    jscookie.remove(TOKEN_NAME);
+  }
 };
 
 export const parseCookies = (req) => {
   // For API Routes we don't need to parse the cookies.
-  if (req.cookies) return req.cookies;
+  if (req?.cookies) return req.cookies;
 
   // For pages we do need to parse the cookies.
-  const cookie = req.headers?.cookie;
+  const cookie = req?.headers?.cookie;
   return parse(cookie || "");
 };
 

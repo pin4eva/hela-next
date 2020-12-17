@@ -20,7 +20,7 @@ const ThemeButton = (props) => {
 };
 
 ThemeButton.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.any,
   isLoading: PropTypes.bool,
 };
 ThemeButton.defaultProps = {

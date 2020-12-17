@@ -10,7 +10,7 @@ const UserSchema = new Schema(
       min: [4, "Your username must be more than 4 characters"],
       max: [20, "Username must not exceed 12 characters"],
     },
-    phone: String,
+    phone: { type: String, default: "" },
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true, min: 4 },
     token: String,
@@ -20,15 +20,15 @@ const UserSchema = new Schema(
     accountType: { type: String, default: "Regular" },
     rank: { type: Number, default: 0 },
     points: { type: Number, default: 0 },
-    contact: String,
-    status: String,
-    plan: String,
-    bio: String,
+    contact: { type: String, default: "" },
+    status: { type: String, default: "" },
+    plan: { type: String, default: "" },
+    bio: { type: String, default: "" },
     image: { type: String, default: "http://placehold.jp/150x150.png" },
   },
-  { toJSON: { virtuals: true }, timestamps: true }
+  { timestamps: true }
 );
 
-const User = mongoose.models.User || mongoose.model("User", UserSchema);
-export default User;
+export default mongoose.models.User || mongoose.model("User", UserSchema);
+
 // module.exports = User;
