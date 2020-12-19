@@ -26,6 +26,7 @@ export const theme = {
     error: "#f65",
     black: "#333",
     green: "#004150",
+    lightGray: "#F2F2F2",
     modes: {
       dark: {
         text: "#fff",

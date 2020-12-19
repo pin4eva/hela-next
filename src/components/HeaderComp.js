@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import Logo from "./Logo";
 
 const HeaderComp = () => {
   useEffect(() => {
@@ -20,7 +21,7 @@ const HeaderComp = () => {
     <Header id="front-header">
       <nav className="navbar align-items-center container">
         <Link href="/">
-          <a className="nav-brand font-weight-bold">HELA</a>
+          <Logo height="2rem" width="4rem" />
         </Link>
 
         <i
@@ -55,7 +56,7 @@ const Header = styled.header``;
 export default HeaderComp;
 
 const navItems = [
-  { name: "Q & A", link: "/qa" },
+  { name: "Forum", link: "/qa" },
   { name: "Reports", link: "/reports" },
   { name: "Practice Notes", link: "/notes" },
 ];

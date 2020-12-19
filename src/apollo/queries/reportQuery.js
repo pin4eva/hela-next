@@ -20,10 +20,17 @@ export const ReportFragment = gql`
 export const GET_REPORTS_QUERY = gql`
   {
     getReports {
-      ...ReportFragment
+      _id
+      court
+      title
+      summary
+      year
+      date
+      vol
+      caseRef
+      slug
     }
   }
-  ${ReportFragment}
 `;
 
 export const GET_REPORT_QUERY = gql`

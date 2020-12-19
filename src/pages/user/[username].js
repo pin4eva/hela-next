@@ -4,8 +4,12 @@ import { getProfile } from "apollo/actions/userActions";
 import React from "react";
 import { GoVerified } from "react-icons/go";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const UserProfilePage = () => {
+const UserProfilePage = ({ props }) => {
+  const user = props?.user;
+
+  if (!user) return <p>Not found</p>;
   return (
     <FrontLayout title="User">
       <HeaderComp />
@@ -63,6 +67,11 @@ const UserProfilePage = () => {
   );
 };
 
+UserProfilePage.propTypes = {
+  user: PropTypes.object,
+  props: PropTypes.node,
+};
+
 const Wrapper = styled.div`
   .inner-top {
     display: flex;
@@ -92,9 +101,9 @@ export default UserProfilePage;
 UserProfilePage.getInitialProps = async ({ query }) => {
   try {
     const user = await getProfile(query.username);
-    console.log(user);
+
     return {
-      props: {},
+      props: { user },
     };
   } catch (error) {
     console.log(error);

@@ -1,3 +1,4 @@
+import BannerCarousel from "@/components/BannerCarousel";
 import HeaderComp from "@/components/HeaderComp";
 import ModalComp from "@/components/Modal";
 import PricingComp from "@/components/Pricing";
@@ -8,6 +9,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import React from "react";
 import { useRecoilValue } from "recoil";
+import { Carousel } from "rsuite";
 import styled from "styled-components";
 // import "./index.scss";
 
@@ -33,11 +35,19 @@ const Home = (props) => {
             </div>
             <div className="banner-wrapper-right">
               <div className="wrapper">
-                <Image
-                  src="/images/banner-phone.png"
-                  height="643"
-                  width="625"
-                />
+                <BannerCarousel />
+                {/* <Carousel className="custom-carousel">
+                  <Image
+                    src="/images/banner-phone.png"
+                    height="643"
+                    width="625"
+                  />
+                  <Image
+                    src="/images/banner-svg-1.svg"
+                    height="643"
+                    width="625"
+                  />
+                </Carousel> */}
               </div>
             </div>
           </div>

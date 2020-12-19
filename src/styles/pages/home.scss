@@ -2,33 +2,47 @@
   img {
     width: 100%;
   }
+
   display: grid;
   grid-template-rows: 1fr auto 1fr 1fr auto auto;
+
   .banner {
     margin-top: 3rem;
+
     h1 {
       line-height: 5rem;
       font-size: 3rem;
       margin-bottom: 1.5rem;
     }
+
     .banner-wrapper {
       @media screen and (min-width: 768px) {
         display: flex;
         justify-content: space-between;
         height: 80%;
         align-items: center;
+
         .banner-wrapper-left {
           flex: 1;
+
           .wrapper {
             width: 100%;
             max-width: 80%;
           }
         }
+
         .banner-wrapper-right {
           flex: 1;
-
           height: 100%;
-          /* margin-top: 5rem; */
+
+          img {
+            width: 100%;
+          }
+
+          .rs-carousel-slider-item {
+            background-color: transparent !important;
+          }
+
         }
       }
     }
@@ -43,17 +57,21 @@
       }
     }
   }
+
   .mobile-showcase {
     .mobile-showcase-wrapper-left {
       flex: 2;
       margin-right: 2rem;
+
       @media screen and (min-width: 768px) {
         width: 100%;
         max-width: 60%;
       }
     }
+
     .mobile-showcase-wrapper-right {
       flex: 1;
+
       @media screen and (min-width: 768px) {
         width: 100%;
         max-width: 70%;
@@ -65,9 +83,11 @@
     h3 {
       margin: 1.5rem 0;
     }
+
     .about-ceo-wrapper {
       .about-ceo-wrapper-left {
         flex: 2;
+
         @include media-md-up() {
           .wrapper {
             width: 100%;
@@ -75,12 +95,15 @@
           }
         }
       }
+
       .about-ceo-wrapper-right {
         flex: 1;
       }
     }
   }
+
   .testimonial {
+
     // background-color: red;
     // display: flex;
     // justify-content: center;
@@ -88,10 +111,12 @@
     &-wrapper {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
+
       &-display-pic {
         /* width: 100%; */
         grid-column: 1/4;
       }
+
       &-twitter-card {
         grid-column: 3/7;
         /* height: 60%;
@@ -101,19 +126,23 @@
         z-index: 1;
         position: relative;
       }
+
       &-display-pic,
       &-twitter-card {
         grid-row: 1/2;
       }
+
       @media screen and (min-width: 768px) {
         &-twitter-card {
           grid-column: 3/6;
+
           .text-content {
             padding: 3rem 0;
           }
         }
       }
     }
+
     .circle {
       height: 6rem;
       width: 6rem;
@@ -122,16 +151,19 @@
       left: 50%;
       transform: translateX(-50%);
       z-index: -1;
+
       @media screen and (min-width: 768px) {
         height: 153px;
         width: 153px;
       }
     }
+
     .indicators {
       list-style: none;
       display: flex;
       justify-content: center;
       margin-top: 2rem;
+
       &-item {
         width: 1rem;
         height: 1rem;

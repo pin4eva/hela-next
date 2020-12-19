@@ -10,7 +10,7 @@ const HeaderBannerComp = ({ image, desc }) => {
       image={image}
       style={{
         background: image && `url(${image}) no-repeat`,
-        height: image && "27rem",
+        height: image && "20rem",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -38,7 +38,7 @@ HeaderBannerComp.defaultProps = {
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
   /* height: 60%; */
   .overlay {
     height: inherit;

@@ -1,5 +1,8 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import { PRIMARY_COLOR } from "utils/constants";
+import Logo from "./Logo";
 
 const FooterComp = () => {
   return (
@@ -7,6 +10,11 @@ const FooterComp = () => {
       <div className="footer-top bg-dark  text-light">
         <div className="container py-3">
           <div className="footer-top-wrapper text-center">
+            <Link href="/">
+              <a className=" d-flex justify-center my-3">
+                <Logo bg="white" width="4rem" />
+              </a>
+            </Link>
             <h1 className="text-center">Download the app now</h1>
             <p className="my-4">
               Id lobortis nunc facilisi nibh neque, ornare. Sit semper pharetra

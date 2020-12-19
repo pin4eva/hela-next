@@ -39,6 +39,7 @@
     "react-icons": "^4.1.0",
     "react-markdown": "^5.0.3",
     "react-mde": "^11.0.0",
+    "react-paginate": "^6.5.0",
     "recoil": "^0.1.2",
     "rsuite": "^4.8.6",
     "sass": "^1.29.0",
