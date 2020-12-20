@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 const FooterComp = () => {
   return (
-    <Footer className="mt-4">
+    <Footer>
       <div className="footer-top bg-dark  text-light">
         <div className="container py-3">
           <div className="footer-top-wrapper text-center">

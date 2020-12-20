@@ -1,6 +1,8 @@
 .forum {
     @extend .fs-14;
     color: #363838;
+    background-color: #f2f2f2;
+    height: 100%;
 
     &-search {
         background-color: white;
@@ -8,7 +10,33 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #f2f2f2; //#c9cccd;
-        box-shadow: 0 0 10px rgba($light-gray, 0.5)
+
+        box-shadow: 0 0 5px rgba($color: $dark, $alpha: 0.5);
+
+        &-input {
+            width: 100%;
+            max-width: 568px;
+        }
+
+        .btn {
+            width: 4rem;
+            border-radius: 0 5px 5px 0;
+            @extend .px-0;
+        }
+
+        .btn-rounded {
+            // @extend .d-md-flex;
+            display: flex;
+            width: 100%;
+            max-width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 100%;
+            align-items: center;
+            justify-content: center;
+
+
+
+        }
     }
 
     &-list {
@@ -27,6 +55,10 @@
         }
     }
 
+    &-single {
+        @extend .forum-list;
+    }
+
     &-list-card {
         @extend .card;
 
@@ -36,7 +68,7 @@
 
         .left {
             // background-color: $warning;
-            width: 15%;
+            width: 6em;
             @extend .container;
 
         }
@@ -49,7 +81,7 @@
 
         .right {
             // background-color: $indigo;
-            width: 15%;
+            width: 4rem;
             @extend .container;
         }
 

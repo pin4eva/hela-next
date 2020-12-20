@@ -1,35 +1,32 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const PaginationComp = ({ array }) => {
-  const [totalCount] = useState(30);
-  const [pageCount] = useState(totalCount / 10);
-  return (
-    <div>
-      <nav aria-label="...">
-        <ul className="pagination">
-          <li className="page-item disabled">
-            <span className="page-link">Previous</span>
-          </li>
-          <li className="page-item">
-            <a className="page-link" href="#">
-              1
-            </a>
-          </li>
+const PaginationComp = ({ postsPerPage, totalPosts, paginate }) => {
+  const pageNumbers = [];
 
-          <li className="page-item">
-            <a className="page-link" href="#">
-              Next
+  for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  return (
+    <nav>
+      <ul className="pagination">
+        {pageNumbers.map((number) => (
+          <li key={number} className="page-item">
+            <a onClick={() => paginate(number)} className="page-link">
+              {number}
             </a>
           </li>
-        </ul>
-      </nav>
-    </div>
+        ))}
+      </ul>
+    </nav>
   );
 };
 
 PaginationComp.propTypes = {
-  array: PropTypes.array,
+  postsPerPage: PropTypes.number,
+  totalPosts: PropTypes.number,
+  paginate: PropTypes.func,
 };
 
 export default PaginationComp;

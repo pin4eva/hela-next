@@ -14,21 +14,11 @@
 @import "./pages/dashboard";
 @import "./pages/login";
 @import "./pages/forum";
-
+@import "./components/button";
+@import "./components/input";
 @import "rsuite/dist/styles/rsuite-default.css";
 
-// *:focus {
-//   outline: none;
-// }
 
-// .form-control {
-//   &:focus {
-//     // border: inherit;
-//     box-shadow: none;
-//     // -webkit-box-shadow: none;
-//   }
-
-// }
 
 #modal-wrapper {
   background-color: rgba(0, 0, 0, 0.3);

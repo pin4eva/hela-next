@@ -16,7 +16,7 @@ const HeaderBannerComp = ({ image, desc }) => {
       }}
     >
       <div className="overlay">
-        <HeaderComp />
+        <HeaderComp logoBG="white" />
 
         <div className="wrapper">
           <h1 className="text-light wrapper-desc">{desc}</h1>

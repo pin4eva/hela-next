@@ -1,9 +1,14 @@
+import { UserAtom } from "atoms/UserAtom";
 import Link from "next/link";
 import React, { useEffect } from "react";
+import { useRecoilValue } from "recoil";
+import { Avatar } from "rsuite";
 import styled from "styled-components";
 import Logo from "./Logo";
+import PropTypes from "prop-types";
 
-const HeaderComp = () => {
+const HeaderComp = (props) => {
+  const user = useRecoilValue(UserAtom);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const mobileNav = document.querySelector(".mobile-nav");
@@ -21,7 +26,9 @@ const HeaderComp = () => {
     <Header id="front-header">
       <nav className="navbar align-items-center container">
         <Link href="/">
-          <Logo height="2rem" width="4rem" />
+          <a>
+            <Logo bg={props.logoBG} height="2rem" width="4rem" />
+          </a>
         </Link>
 
         <i
@@ -41,9 +48,15 @@ const HeaderComp = () => {
             ))}
 
             <li className="nav-item">
-              <Link href="/login">
-                <a className="btn btn-outline-primary btn-sm">Login</a>
-              </Link>
+              {user ? (
+                <a className="nav-link">
+                  <Avatar circle size="sm" />
+                </a>
+              ) : (
+                <Link href="/login">
+                  <a className="btn btn-outline-primary btn-sm">Login</a>
+                </Link>
+              )}
             </li>
           </ul>
         </div>
@@ -52,11 +65,15 @@ const HeaderComp = () => {
   );
 };
 
+HeaderComp.propTypes = {
+  logoBG: PropTypes.string,
+};
+
 const Header = styled.header``;
 export default HeaderComp;
 
 const navItems = [
-  { name: "Forum", link: "/qa" },
+  { name: "Forum", link: "/forum" },
   { name: "Reports", link: "/reports" },
   { name: "Practice Notes", link: "/notes" },
 ];

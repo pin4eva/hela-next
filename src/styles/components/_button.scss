@@ -1,0 +1,33 @@
+.btn {
+    border-radius: 3.125rem;
+    padding: $btn-padding;
+
+    &:active,
+    &:focus {
+        outline: none;
+
+    }
+
+    &-primary {
+        color: $light;
+    }
+
+    &-gray {
+        color: $light;
+        background-color: $dark-gray;
+    }
+
+    &-sm {
+        padding: 0.4rem 2.875rem;
+    }
+
+    &-btn-green {
+        color: $light;
+        background-color: $green;
+    }
+
+    &-blue {
+        background-color: $blue;
+        color: $light;
+    }
+}

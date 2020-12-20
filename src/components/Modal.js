@@ -1,45 +1,35 @@
-import { useAwayListener } from "@/components/AwayListner";
-import { ModalAtom } from "atoms/ModalAtom";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
-import { useSetRecoilState } from "recoil";
+import { Button, Modal } from "rsuite";
 
-const ModalComp = ({ show, header, children }) => {
-  const setShow = useSetRecoilState(ModalAtom);
-  const ref = useRef(null);
-  useAwayListener(ref);
-
+const ModalComp = (props) => {
   return (
-    <div id="modal-wrapper" className={!show ? "d-none" : "d-flex"}>
-      <AnimatePresence>
-        {show && (
-          <motion.div
-            className="theme-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            ref={ref}
-          >
-            <div className="theme-modal-header d-flex justify-content-between">
-              <h3>{header}</h3>
-              <span className="close c-hand" onClick={() => setShow(false)}>
-                {" "}
-                X{" "}
-              </span>
-            </div>
-            <div className="theme-modal-body">{children}</div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div>
+      <Modal show={props.show} onHide={props.onClose}>
+        <Modal.Header>
+          <Modal.Title>Modal Title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{props.children}</Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onClose} appearance="primary">
+            Ok
+          </Button>
+          <Button onClick={props.onClose} appearance="subtle">
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
 
 ModalComp.propTypes = {
+  children: PropTypes.element.isRequired,
   show: PropTypes.bool,
-  header: PropTypes.string,
-  children: PropTypes.element,
+  onClose: PropTypes.func,
+};
+ModalComp.defaultProps = {
+  show: false,
 };
 
 export default ModalComp;
