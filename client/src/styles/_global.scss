@@ -1,0 +1,122 @@
+@font-face {
+  font-family: "Poppins", sans-serif;
+  src: url("../fonts/Poppins-Black.ttf");
+  src: url("../fonts/Poppins-BlackItalic.ttf");
+  src: url("../fonts/Poppins-Bold.ttf");
+  src: url("../fonts/Poppins-Italic.ttf");
+  src: url("../fonts/Poppins-ExtraLight.ttf");
+  src: url("../fonts/Poppins-Light.ttf");
+  src: url("../fonts/Poppins-LightItalic.ttf");
+  src: url("../fonts/Poppins-Medium.ttf");
+  src: url("../fonts/Poppins-MediumItalic.ttf");
+  src: url("../fonts/Poppins-SemiBold.ttf");
+  src: url("../fonts/Poppins-Regular.ttf");
+  src: url("../fonts/Poppins-Thin.ttf");
+  src: url("../fonts/Poppins-ThinItalic.ttf");
+  src: url("../fonts/beaver.ttf");
+}
+
+html {
+  font-size: 14px;
+  height: 100%;
+  min-height: -webkit-fill-available;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: "Poppins";
+  font-size: 98%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+
+  #__next {
+    height: inherit;
+  }
+
+  // color: $text-color;
+}
+
+a,
+.nav-link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.8rem;
+}
+
+h2 {
+  font-size: 2.3rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.8rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+h6 {
+  font-size: 1.1rem;
+}
+
+
+
+.mde-text {
+  &:focus {
+    outline: none;
+    border: 1px solid $dark;
+  }
+}
+
+
+
+
+
+// .was-validated .form-control:valid,
+// .form-control.is-valid;
+.card {
+  padding: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    @extend .form-label;
+
+  }
+
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}

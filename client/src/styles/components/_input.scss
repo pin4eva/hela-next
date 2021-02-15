@@ -1,0 +1,12 @@
+input,
+.form-control {
+    &:focus {
+        outline: none !important;
+        // border: inherit;
+        box-shadow: none;
+        // -webkit-box-shadow: none;
+    }
+
+
+
+}

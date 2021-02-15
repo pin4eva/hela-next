@@ -1,0 +1,66 @@
+#front-header {
+  // background-color: $primary;
+  position: relative;
+
+  .navbar {
+ 
+    .fa-bars {
+      z-index: 2;
+    }
+
+
+
+    @include media-sm {
+      .fa-bars {
+        cursor: pointer;
+        // color: ;
+      }
+      .mobile-nav {
+        position: absolute;
+        overflow: hidden;
+      
+        display: none;
+        // right: 0;
+        background-color: $dark;
+        color: $light;
+        width: 0;
+        height: 100vh;
+        z-index: 1;
+        @include transition();
+        .nav {
+          margin-top: 2rem;
+          flex-direction: column;
+          height: 60%;
+            
+          justify-content: space-around;
+          align-items: center;
+        }
+        &.open {
+          @include transition();
+          display: block;
+          width: 100%;
+            top: 0;
+            left: 0;
+          
+
+          
+        }
+      }
+      &.mobile-nav.close {
+        .fa-bars {
+          cursor: pointer;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+.header-banner {
+  .overlay {
+    .navbar {
+      color: #fff;
+    }
+  }
+}

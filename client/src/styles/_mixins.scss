@@ -1,0 +1,56 @@
+@mixin media-md-up {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (min-width: 768px) and (max-width: 920px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@function set-color($color) {
+  @if (lightness($color) >40) {
+    @return $light;
+  }
+
+  @else {
+    @return $dark;
+  }
+}
+
+@mixin animation-open {
+  @keyframes open-close {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-100vw);
+    }
+  }
+
+  animation-name: open-close;
+  animation-delay: 0.8s;
+}
+
+
+.input-style {
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  box-sizing: border-box;
+  border-radius: 1.875rem;
+  padding: $btn-padding;
+  width: 100%;
+
+  &:focus {
+    outline: none !important;
+  }
+}
